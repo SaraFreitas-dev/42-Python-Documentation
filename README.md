@@ -18,7 +18,7 @@ PYTHON_42_SCHOOL_DOCUMENTATION/
 ├── 🛠️ Makefile
 ├── 🎮 MLX-42lib
 ├── 🚀 Projects
-└── 🐍 Python_core  # With concepts including Packages, OOP, etc.
+└── 🐍 Python_core  # With concepts including Packages, OOP,class methods, etc.
 ```
 
 The repository contains multiple sections dedicated to Python core concepts, development tooling, MLX-related notes, and project documentation designed to support and explain newer 42 School Python projects.
@@ -26,6 +26,40 @@ The repository contains multiple sections dedicated to Python core concepts, dev
 ---
 
 # 📖 Included Topics
+
+## 🎮 MLX & Graphics
+- MLX-related notes
+- graphics workflows
+- rendering concepts
+
+---
+
+## 🚀 Projects
+Project-related notes and documentation created to help understand and complete newer Python projects from the 42 curriculum.
+This sections may include implementation notes, architecture explanations, debugging workflows, and development utilities.
+
+Additional project documentation may continue to be added over time.
+
+---
+
+## 🐍 Python Core
+- typing
+- OOP
+- Pydantic
+- JSON validation
+- virtual environments
+- error handling
+- Packages
+
+---
+
+## 🛠️ Makefiles
+- Python Makefiles
+- virtual environments
+- automation workflows
+- linting commands
+
+---
 
 ## ⚙️ Flake8 & Mypy
 - type checking
@@ -42,39 +76,6 @@ The repository contains multiple sections dedicated to Python core concepts, dev
 - reset
 - GitHub workflows
 
----
-
-## 🛠️ Makefiles
-- Python Makefiles
-- virtual environments
-- automation workflows
-- linting commands
-
----
-
-## 🐍 Python Core
-- typing
-- OOP
-- Pydantic
-- JSON validation
-- virtual environments
-- error handling
-- Packages
-
----
-
-## 🎮 MLX & Graphics
-- MLX-related notes
-- graphics workflows
-- rendering concepts
-
----
-
-## 🚀 Projects
-Project-related notes and documentation created to help understand and complete newer Python projects from the 42 curriculum.
-This sections may include implementation notes, architecture explanations, debugging workflows, and development utilities.
-
-Additional project documentation may continue to be added over time.
 
 ---
 
