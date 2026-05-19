@@ -18,7 +18,7 @@ PYTHON_42_SCHOOL_DOCUMENTATION/
 ├── 🛠️ Makefile
 ├── 🎮 MLX-42lib
 ├── 🚀 Projects
-└── 🐍 Python_core
+└── 🐍 Python_core  # With concepts including Packages, OOP, etc.
 ```
 
 The repository contains multiple sections dedicated to Python core concepts, development tooling, MLX-related notes, and project documentation designed to support and explain newer 42 School Python projects.
@@ -59,6 +59,7 @@ The repository contains multiple sections dedicated to Python core concepts, dev
 - JSON validation
 - virtual environments
 - error handling
+- Packages
 
 ---
 
