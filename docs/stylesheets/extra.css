@@ -14,26 +14,36 @@
 
 .md-typeset h1 {
     color: white !important;
+
+    font-size: 1.7rem;
+
     font-weight: 700;
-    margin-bottom: 1rem;
+
+    line-height: 1.1;
+
+    margin-bottom: 0.8rem;
 }
 
 .md-typeset h2 {
     color: white !important;
 
+    font-size: 1.2rem;
+
     font-weight: 700;
 
-    border-left: 4px solid #4f8cff;
+    border-left: 3px solid #4f8cff;
 
     padding-left: 8px;
 
     line-height: 1.2;
 
-    margin-top: 1.8rem;
+    margin-top: 1.5rem;
 }
 
 .md-typeset h3 {
     color: white !important;
+
+    font-size: 1rem;
 
     font-weight: 600;
 }
