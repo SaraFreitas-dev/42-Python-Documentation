@@ -1,3 +1,4 @@
+```bash
 NAME = fly_in.py
 PYTHON = python3
 VENV = venv
@@ -72,3 +73,4 @@ fclean: clean
 re: fclean install
 
 .PHONY: all venv install run debug lint clean fclean re
+```
