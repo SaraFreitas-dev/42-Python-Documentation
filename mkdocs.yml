@@ -1,0 +1,35 @@
+site_name: 42 School Python Documentation
+
+theme:
+  name: material
+
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.instant
+    - content.code.copy
+    - search.highlight
+
+  palette:
+    scheme: slate
+
+  font:
+    text: Roboto
+    code: JetBrains Mono
+
+plugins:
+  - search
+  - awesome-pages
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - tables
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css

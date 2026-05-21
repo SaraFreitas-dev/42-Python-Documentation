@@ -1,0 +1,58 @@
+/* BACKGROUND */
+
+[data-md-color-scheme="slate"] {
+    --md-default-bg-color: #0f1724;
+}
+
+/* MAIN TITLES */
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* SECTION TITLES */
+
+h2 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    border-left: 4px solid #4f8cff;
+    padding-left: 14px;
+    color: #ffffff;
+}
+
+/* CODE BLOCKS */
+
+.highlight pre {
+    background-color: #1a2233 !important;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 1rem;
+}
+
+/* INLINE CODE */
+
+code {
+    background-color: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+
+/* SIDEBAR */
+
+.md-sidebar {
+    background-color: #111827;
+}
+
+/* NAVIGATION LINKS */
+
+.md-nav__link {
+    font-size: 0.9rem;
+}
+
+/* PAGE WIDTH */
+
+.md-grid {
+    max-width: 1500px;
+}
