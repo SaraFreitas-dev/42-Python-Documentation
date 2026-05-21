@@ -13,13 +13,9 @@ The project focuses on:
 
 ---
 
-</div>
-
-<div align="center">
-
-![Menu](menu_background.png)
-
-</div>
+<p align="center">
+  <img src="menu_background.png" alt="Menu" width="900">
+</p>
 
 For more information about the maze project, visit the repository:
 https://github.com/SaraFreitas-dev/A-Maze-ing
