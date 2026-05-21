@@ -32,4 +32,4 @@ markdown_extensions:
       permalink: true
 
 extra_css:
-  - stylesheets/extra.css
+  - docs/stylesheets/extra.css
