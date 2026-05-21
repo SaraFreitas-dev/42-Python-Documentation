@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🐍 42 School Python Documentation & Project Notes
 
 [![Documentation](https://img.shields.io/badge/docs-online-brightgreen)](https://sarafreitas-dev.github.io/42-Python-Documentation/)
