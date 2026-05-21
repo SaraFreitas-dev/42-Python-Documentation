@@ -4,9 +4,7 @@ theme:
   name: material
 
   features:
-    - navigation.sections
     - navigation.expand
-    - navigation.instant
     - content.code.copy
     - search.highlight
 
@@ -32,4 +30,4 @@ markdown_extensions:
       permalink: true
 
 extra_css:
-  - docs/stylesheets/extra.css
+  - stylesheets/extra.css
