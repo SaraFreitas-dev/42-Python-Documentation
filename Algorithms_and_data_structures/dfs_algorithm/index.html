@@ -1,0 +1,2498 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../bfs_algorithm/">
+      
+      
+        <link rel="next" href="../dijkstra_algorithm/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Depth-First Search (DFS) - 42 School Python Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#depth-first-search-dfs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="42 School Python Documentation" class="md-header__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            42 School Python Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Depth-First Search (DFS)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="42 School Python Documentation" class="md-nav__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    42 School Python Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 42 School Python Documentation &amp; Project Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    42 Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    42 Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A maze ing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    A maze ing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/export-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A-Maze-ing Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/maze-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maze Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/mlx-lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/render/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Render System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/Drone_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛩️ Fly-in — Drone System Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/Parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📄 Parsing — Input File Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/simulator_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulator System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms and data structures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithms and data structures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Breadth-First Search (BFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Depth-First Search (DFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Git/git_workflow_for_42/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Workflow for 42 School
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX 42lib
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MLX 42lib
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLX_42lib/MLX_DOCUMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MinilibX (MLX) — Complete Python Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Makefile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Makefile/Makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Makefile/python_makefile_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Python Makefile Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python core
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python core
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data validation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data validation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Data_validation/json_and_data_validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON and Data Validation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Data_validation/pydantic_concepts_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic v2 - Core Concepts Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dunder methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Dunder_methods/dunder_methods_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✨ Python Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Dunder_methods/python_introspection_and_dunder_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Introspection &amp; Useful Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment and packages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment and packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Environment_and_packages/packages_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Python Packages Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Environment_and_packages/virtual_environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Virtual Environments Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error handling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Error handling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Error_handling/exceptions_try_except/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚨 Python Exceptions &amp; Try/Except Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Error_handling/traceback_debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 Python Traceback &amp; Debugging Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional programming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Functional programming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Functional_programming/callable_and_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Callable and Functions in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Functional_programming/closures_and_nonlocal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Closures and nonlocal in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Functional_programming/decorators_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decorators Guide in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Functional_programming/lambda_functions_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Python Lambda Functions Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OOP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OOP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/OOP/class_methods_and_attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Class Methods &amp; Attributes Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/OOP/oop_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object-Oriented Programming (OOP) Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flake8 and mypy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flake8 and mypy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flake8_and_mypy/mypy_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mypy and flake8 Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flake8_and_mypy/typing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Typing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="depth-first-search-dfs">Depth-First Search (DFS)<a class="headerlink" href="#depth-first-search-dfs" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Understanding recursive graph traversal and maze/path exploration (used in the a-maze-ing project).</p>
+</blockquote>
+<hr />
+<h1 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h1>
+<ol>
+<li>What is DFS?</li>
+<li>Graph Traversal</li>
+<li>DFS Mentality</li>
+<li>Stack Behavior</li>
+<li>Recursive Exploration</li>
+<li>Visual Example</li>
+<li>DFS Logic</li>
+<li>Visited Nodes</li>
+<li>Recursive Backtracking</li>
+<li>Iterative DFS</li>
+<li>Complexity</li>
+<li>DFS vs BFS</li>
+<li>DFS in Maze Generation</li>
+<li>Fly-in Connection</li>
+<li>Mental Model</li>
+</ol>
+<hr />
+<h1 id="1-what-is-dfs">1️⃣ What is DFS?<a class="headerlink" href="#1-what-is-dfs" title="Permanent link">&para;</a></h1>
+<p>DFS means:</p>
+<h1 id="depth-first-search">Depth-First Search<a class="headerlink" href="#depth-first-search" title="Permanent link">&para;</a></h1>
+<p>It is an algorithm used to:</p>
+<ul>
+<li>traverse graphs</li>
+<li>explore paths deeply</li>
+<li>generate mazes</li>
+<li>search recursive structures</li>
+</ul>
+<hr />
+<h1 id="dfs-explores">DFS explores:<a class="headerlink" href="#dfs-explores" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>go as deep as possible first
+</code></pre></div>
+<p>ONLY after:</p>
+<div class="highlight"><pre><span></span><code>backtrack
+</code></pre></div>
+<hr />
+<h1 id="2-graph-traversal">2️⃣ Graph Traversal<a class="headerlink" href="#2-graph-traversal" title="Permanent link">&para;</a></h1>
+<p>Imagine this graph:</p>
+<div class="highlight"><pre><span></span><code>        start
+       /  |  \
+      A   B   C
+     /         \
+    D           goal
+</code></pre></div>
+<p>DFS might explore:</p>
+<div class="highlight"><pre><span></span><code>start
+↓
+A
+↓
+D
+↓
+backtrack
+↓
+B
+↓
+C
+↓
+goal
+</code></pre></div>
+<hr />
+<h1 id="3-dfs-mentality">3️⃣ DFS Mentality<a class="headerlink" href="#3-dfs-mentality" title="Permanent link">&para;</a></h1>
+<p>DFS constantly thinks:</p>
+<div class="highlight"><pre><span></span><code>&quot;Keep going deeper.&quot;
+</code></pre></div>
+<p>It prioritizes:</p>
+<div class="highlight"><pre><span></span><code>current branch exploration
+</code></pre></div>
+<p>before checking siblings.</p>
+<hr />
+<h1 id="4-stack-behavior">4️⃣ Stack Behavior<a class="headerlink" href="#4-stack-behavior" title="Permanent link">&para;</a></h1>
+<p>DFS behaves like:</p>
+<h1 id="stack">Stack<a class="headerlink" href="#stack" title="Permanent link">&para;</a></h1>
+<p>A stack works like:</p>
+<div class="highlight"><pre><span></span><code>Last In
+First Out
+</code></pre></div>
+<p>This is called:</p>
+<h1 id="lifo">LIFO<a class="headerlink" href="#lifo" title="Permanent link">&para;</a></h1>
+<hr />
+<h1 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>ADD A
+ADD B
+ADD C
+</code></pre></div>
+<p>Stack:</p>
+<div class="highlight"><pre><span></span><code>[A, B, C]
+</code></pre></div>
+<p>Remove:</p>
+<div class="highlight"><pre><span></span><code>C
+</code></pre></div>
+<p>because:</p>
+<div class="highlight"><pre><span></span><code>C was added last
+</code></pre></div>
+<hr />
+<h1 id="5-recursive-exploration">5️⃣ Recursive Exploration<a class="headerlink" href="#5-recursive-exploration" title="Permanent link">&para;</a></h1>
+<p>DFS is commonly implemented using:</p>
+<div class="highlight"><pre><span></span><code>recursion
+</code></pre></div>
+<hr />
+<h1 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="n">visit</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="err">↓</span>
+<span class="n">visit</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+    <span class="err">↓</span>
+<span class="n">visit</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h1 id="recursion-flow">Recursion Flow<a class="headerlink" href="#recursion-flow" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>start
+ ↓
+A
+ ↓
+D
+ ↓
+end branch
+ ↓
+backtrack
+</code></pre></div>
+<hr />
+<h1 id="6-visual-example">6️⃣ Visual Example<a class="headerlink" href="#6-visual-example" title="Permanent link">&para;</a></h1>
+<p>Graph:</p>
+<div class="highlight"><pre><span></span><code>        start
+       /     \
+      A       B
+     / \
+    C   D
+</code></pre></div>
+<p>DFS exploration:</p>
+<div class="highlight"><pre><span></span><code>start
+↓
+A
+↓
+C
+↓
+backtrack
+↓
+D
+↓
+backtrack
+↓
+B
+</code></pre></div>
+<hr />
+<h1 id="7-dfs-logic">7️⃣ DFS Logic<a class="headerlink" href="#7-dfs-logic" title="Permanent link">&para;</a></h1>
+<h1 id="core-idea">Core Idea<a class="headerlink" href="#core-idea" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>Explore deeply before exploring widely.
+</code></pre></div>
+<hr />
+<h1 id="recursive-pseudo-code">Recursive Pseudo Code<a class="headerlink" href="#recursive-pseudo-code" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>FUNCTION dfs(node):
+
+    mark node as visited
+
+    FOR each neighbor:
+
+        IF neighbor not visited:
+
+            dfs(neighbor)
+</code></pre></div>
+<hr />
+<h1 id="8-visited-nodes">8️⃣ Visited Nodes<a class="headerlink" href="#8-visited-nodes" title="Permanent link">&para;</a></h1>
+<p>DFS MUST track visited nodes.</p>
+<p>Otherwise:</p>
+<div class="highlight"><pre><span></span><code>infinite recursion
+</code></pre></div>
+<p>may happen.</p>
+<hr />
+<h1 id="example-loop">Example Loop<a class="headerlink" href="#example-loop" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>A -&gt; B
+↑    ↓
+D &lt;- C
+</code></pre></div>
+<p>Without visited tracking:</p>
+<div class="highlight"><pre><span></span><code>A -&gt; B -&gt; C -&gt; D -&gt; A -&gt; ...
+</code></pre></div>
+<p>forever 😄</p>
+<hr />
+<h1 id="visited-example">Visited Example<a class="headerlink" href="#visited-example" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="n">visited</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;B&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h1 id="9-recursive-backtracking">9️⃣ Recursive Backtracking<a class="headerlink" href="#9-recursive-backtracking" title="Permanent link">&para;</a></h1>
+<p>When DFS reaches:</p>
+<div class="highlight"><pre><span></span><code>end of branch
+</code></pre></div>
+<p>it:</p>
+<div class="highlight"><pre><span></span><code>returns backwards
+</code></pre></div>
+<p>This is called:</p>
+<h1 id="backtracking">backtracking<a class="headerlink" href="#backtracking" title="Permanent link">&para;</a></h1>
+<hr />
+<h1 id="visual-example">Visual Example<a class="headerlink" href="#visual-example" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>start
+ ↓
+A
+ ↓
+C
+ ↓
+no neighbors
+ ↓
+backtrack to A
+ ↓
+explore D
+</code></pre></div>
+<hr />
+<h1 id="iterative-dfs">🔟 Iterative DFS<a class="headerlink" href="#iterative-dfs" title="Permanent link">&para;</a></h1>
+<p>DFS can also be implemented without recursion.</p>
+<p>Using:</p>
+<div class="highlight"><pre><span></span><code>stack
+</code></pre></div>
+<hr />
+<h1 id="iterative-pseudo-code">Iterative Pseudo Code<a class="headerlink" href="#iterative-pseudo-code" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>CREATE stack
+CREATE visited set
+
+PUSH start node
+
+WHILE stack not empty:
+
+    current = stack.pop()
+
+    IF not visited:
+
+        mark visited
+
+        PUSH neighbors
+</code></pre></div>
+<hr />
+<h1 id="11-complexity">1️⃣1️⃣ Complexity<a class="headerlink" href="#11-complexity" title="Permanent link">&para;</a></h1>
+<p>DFS complexity is usually:</p>
+<div class="highlight"><pre><span></span><code>O(V + E)
+</code></pre></div>
+<p>Where:</p>
+<div class="highlight"><pre><span></span><code>V = vertices
+E = edges
+</code></pre></div>
+<hr />
+<h1 id="12-dfs-vs-bfs">1️⃣2️⃣ DFS vs BFS<a class="headerlink" href="#12-dfs-vs-bfs" title="Permanent link">&para;</a></h1>
+<h1 id="dfs">DFS<a class="headerlink" href="#dfs" title="Permanent link">&para;</a></h1>
+<p>Explores:</p>
+<div class="highlight"><pre><span></span><code>deep first
+</code></pre></div>
+<hr />
+<h1 id="bfs">BFS<a class="headerlink" href="#bfs" title="Permanent link">&para;</a></h1>
+<p>Explores:</p>
+<div class="highlight"><pre><span></span><code>layer by layer
+</code></pre></div>
+<hr />
+<h1 id="dfs-mentality">DFS Mentality<a class="headerlink" href="#dfs-mentality" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>&quot;Keep going deeper&quot;
+</code></pre></div>
+<hr />
+<h1 id="bfs-mentality">BFS Mentality<a class="headerlink" href="#bfs-mentality" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>&quot;Explore closest nodes first&quot;
+</code></pre></div>
+<hr />
+<h1 id="13-dfs-in-maze-generation">1️⃣3️⃣ DFS in Maze Generation<a class="headerlink" href="#13-dfs-in-maze-generation" title="Permanent link">&para;</a></h1>
+<p>DFS is EXTREMELY popular for:</p>
+<h1 id="maze-generation">maze generation<a class="headerlink" href="#maze-generation" title="Permanent link">&para;</a></h1>
+<p>Because:</p>
+<div class="highlight"><pre><span></span><code>DFS naturally creates long corridors
+</code></pre></div>
+<hr />
+<h1 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h1>
+<p>Your A-Maze-ing project uses:</p>
+<div class="highlight"><pre><span></span><code>Randomized DFS
+</code></pre></div>
+<p>to:</p>
+<ul>
+<li>carve paths</li>
+<li>explore cells</li>
+<li>backtrack</li>
+<li>generate perfect mazes</li>
+</ul>
+<hr />
+<h1 id="dfs-maze-flow">DFS Maze Flow<a class="headerlink" href="#dfs-maze-flow" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>current cell
+    ↓
+random neighbor
+    ↓
+carve wall
+    ↓
+continue deeper
+    ↓
+no neighbors?
+    ↓
+backtrack
+</code></pre></div>
+<hr />
+<h1 id="14-fly-in-connection">1️⃣4️⃣ Fly-in Connection<a class="headerlink" href="#14-fly-in-connection" title="Permanent link">&para;</a></h1>
+<p>DFS is useful in Fly-in for:</p>
+<ul>
+<li>graph traversal learning</li>
+<li>recursive exploration</li>
+<li>understanding pathfinding</li>
+<li>understanding backtracking</li>
+</ul>
+<p>BUT:</p>
+<div class="highlight"><pre><span></span><code>DFS does NOT guarantee cheapest path
+</code></pre></div>
+<p>or:</p>
+<div class="highlight"><pre><span></span><code>shortest weighted route
+</code></pre></div>
+<p>That is why:</p>
+<div class="highlight"><pre><span></span><code>Dijkstra fits Fly-in better
+</code></pre></div>
+<hr />
+<h1 id="15-mental-model">1️⃣5️⃣ Mental Model<a class="headerlink" href="#15-mental-model" title="Permanent link">&para;</a></h1>
+<p>Think of DFS like:</p>
+<div class="highlight"><pre><span></span><code>exploring a cave
+</code></pre></div>
+<p>You:</p>
+<ul>
+<li>keep moving deeper</li>
+<li>follow one tunnel</li>
+<li>only return when stuck</li>
+</ul>
+<hr />
+<h1 id="final-mental-image">Final Mental Image<a class="headerlink" href="#final-mental-image" title="Permanent link">&para;</a></h1>
+<p>DFS always asks:</p>
+<div class="highlight"><pre><span></span><code>&quot;How far can I go from here?&quot;
+</code></pre></div>
+<p>NOT:</p>
+<div class="highlight"><pre><span></span><code>&quot;What is the closest node?&quot;
+</code></pre></div>
+<p>That is the BIG difference between:</p>
+<div class="highlight"><pre><span></span><code>DFS
+vs
+BFS
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

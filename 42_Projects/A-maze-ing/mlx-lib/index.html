@@ -1,0 +1,2590 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../maze-generator/">
+      
+      
+        <link rel="next" href="../parsing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>MLX Library - 42 School Python Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mlx-library" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="42 School Python Documentation" class="md-header__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            42 School Python Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MLX Library
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="42 School Python Documentation" class="md-nav__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    42 School Python Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 42 School Python Documentation &amp; Project Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    42 Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    42 Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A maze ing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    A maze ing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../export-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A-Maze-ing Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maze-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maze Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../render/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Render System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/Drone_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛩️ Fly-in — Drone System Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/Parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📄 Parsing — Input File Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/simulator_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulator System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms and data structures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithms and data structures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/bfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Breadth-First Search (BFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/dfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Depth-First Search (DFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Git/git_workflow_for_42/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Workflow for 42 School
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX 42lib
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MLX 42lib
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLX_42lib/MLX_DOCUMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MinilibX (MLX) — Complete Python Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Makefile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Makefile/Makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Makefile/python_makefile_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Python Makefile Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python core
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python core
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data validation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data validation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Data_validation/json_and_data_validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON and Data Validation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Data_validation/pydantic_concepts_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic v2 - Core Concepts Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dunder methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Dunder_methods/dunder_methods_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✨ Python Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Dunder_methods/python_introspection_and_dunder_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Introspection &amp; Useful Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment and packages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment and packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Environment_and_packages/packages_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Python Packages Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Environment_and_packages/virtual_environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Virtual Environments Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error handling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Error handling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Error_handling/exceptions_try_except/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚨 Python Exceptions &amp; Try/Except Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Error_handling/traceback_debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 Python Traceback &amp; Debugging Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional programming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Functional programming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/callable_and_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Callable and Functions in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/closures_and_nonlocal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Closures and nonlocal in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/decorators_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decorators Guide in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/lambda_functions_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Python Lambda Functions Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OOP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OOP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/OOP/class_methods_and_attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Class Methods &amp; Attributes Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/OOP/oop_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object-Oriented Programming (OOP) Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flake8 and mypy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flake8 and mypy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flake8_and_mypy/mypy_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mypy and flake8 Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flake8_and_mypy/typing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Typing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="mlx-library">MLX Library<a class="headerlink" href="#mlx-library" title="Permanent link">&para;</a></h1>
+<p>This document explains how the <strong>MiniLibX (MLX)</strong> library is used in the <strong>A-Maze-ing</strong> project.</p>
+<p>MiniLibX is a small graphical library commonly used in 42 School projects. It provides basic tools to:
+- open a window
+- load images
+- draw images to the screen
+- handle keyboard input
+- listen to window events
+- run a graphical loop</p>
+<p>In this project, MLX is used to display the maze, menus, themes, player movement, BFS animations, and visual feedback.</p>
+<hr />
+<h1 id="main-files">📁 Main Files<a class="headerlink" href="#main-files" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code>render/
+├── mlx_renderer.py
+├── draw_maze.py
+├── menu.py
+├── Assets.py
+├── converter.py
+└── GameState.py
+</code></pre></div>
+<hr />
+<h1 id="what-mlx-does">🧠 What MLX Does<a class="headerlink" href="#what-mlx-does" title="Permanent link">&para;</a></h1>
+<p>MLX works as the graphical layer of the project.</p>
+<p>It does not generate the maze and it does not solve the maze.</p>
+<p>Instead, it receives data from the project and displays it visually.</p>
+<div class="highlight"><pre><span></span><code>Maze generation
+      │
+      ▼
+Maze grid / path / state
+      │
+      ▼
+MLX renderer
+      │
+      ▼
+Window display
+</code></pre></div>
+<hr />
+<h1 id="creating-a-window">🪟 Creating a Window<a class="headerlink" href="#creating-a-window" title="Permanent link">&para;</a></h1>
+<p>The first step in any MLX program is initializing MLX and creating a window.</p>
+<p>In this project, this happens inside:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">mlx_window</span><span class="p">(</span><span class="n">game</span><span class="p">:</span> <span class="n">GameState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</code></pre></div>
+<p>Example from the project:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span> <span class="o">=</span> <span class="n">Mlx</span><span class="p">()</span>
+<span class="n">mlx_ptr</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_init</span><span class="p">()</span>
+
+<span class="n">win_ptr</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_new_window</span><span class="p">(</span>
+    <span class="n">mlx_ptr</span><span class="p">,</span>
+    <span class="n">WINDOW_WIDTH</span><span class="p">,</span>
+    <span class="n">WINDOW_HEIGHT</span><span class="p">,</span>
+    <span class="s2">&quot;A-MAZE-ING&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>This creates the main game window.</p>
+<p>The project uses:</p>
+<div class="highlight"><pre><span></span><code><span class="n">WINDOW_WIDTH</span> <span class="o">=</span> <span class="mi">1600</span>
+<span class="n">WINDOW_HEIGHT</span> <span class="o">=</span> <span class="mi">900</span>
+</code></pre></div>
+<hr />
+<h1 id="images-in-mlx">🖼️ Images in MLX<a class="headerlink" href="#images-in-mlx" title="Permanent link">&para;</a></h1>
+<p>MiniLibX works best with <code>.xpm</code> images.</p>
+<p>Because of that, the project converts image assets into XPM before loading them.</p>
+<p>Examples of loaded assets:
+- walls
+- floors
+- trails
+- ducks
+- exit doors
+- banners
+- menu backgrounds</p>
+<hr />
+<h1 id="asset-loading">📦 Asset Loading<a class="headerlink" href="#asset-loading" title="Permanent link">&para;</a></h1>
+<p>The <code>Assets</code> class loads and stores the images used by the renderer.</p>
+<p>Main file:</p>
+<div class="highlight"><pre><span></span><code>render/Assets.py
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">wall</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_xpm_file_to_image</span><span class="p">(</span>
+    <span class="n">mlx_ptr</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;assets/generated/</span><span class="si">{</span><span class="n">wall_file</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">tile_size</span><span class="si">}</span><span class="s2">.xpm&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>This loads an XPM image and stores it so it can be drawn later.</p>
+<hr />
+<h1 id="png-jpeg-to-xpm-conversion">🔄 PNG / JPEG to XPM Conversion<a class="headerlink" href="#png-jpeg-to-xpm-conversion" title="Permanent link">&para;</a></h1>
+<p>The project stores original assets as PNG or JPEG files.</p>
+<p>Before MLX can use them, they are:
+1. resized
+2. converted to XPM
+3. saved in <code>assets/generated/</code></p>
+<p>Main file:</p>
+<div class="highlight"><pre><span></span><code>render/converter.py
+</code></pre></div>
+<p>Main functions:</p>
+<div class="highlight"><pre><span></span><code><span class="n">generate_scaled_asset</span><span class="p">()</span>
+<span class="n">convert_to_xpm</span><span class="p">()</span>
+<span class="n">generate_all_assets</span><span class="p">()</span>
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;magick </span><span class="si">{</span><span class="n">png_path</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">xpm_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The project uses ImageMagick through the <code>magick</code> command to perform the conversion.</p>
+<hr />
+<h1 id="dynamic-asset-scaling">📐 Dynamic Asset Scaling<a class="headerlink" href="#dynamic-asset-scaling" title="Permanent link">&para;</a></h1>
+<p>The maze can have different sizes, so the tile size is calculated dynamically.</p>
+<p>This prevents the maze from being too large for the screen.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">calculate_tile_size</span><span class="p">(</span><span class="n">game</span><span class="p">:</span> <span class="n">GameState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</code></pre></div>
+<p>The tile size depends on:
+- maze width
+- maze height
+- available window width
+- available window height
+- banner space</p>
+<p>Once the tile size is known, assets are generated for that exact size.</p>
+<hr />
+<h1 id="drawing-images-to-the-window">🧱 Drawing Images to the Window<a class="headerlink" href="#drawing-images-to-the-window" title="Permanent link">&para;</a></h1>
+<p>MLX draws images using:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">()</span>
+</code></pre></div>
+<p>Example from the project:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span>
+    <span class="n">mlx_ptr</span><span class="p">,</span>
+    <span class="n">win_ptr</span><span class="p">,</span>
+    <span class="n">base_tile</span><span class="p">,</span>
+    <span class="n">screen_x</span><span class="p">,</span>
+    <span class="n">screen_y</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>This places an image at a specific pixel position.</p>
+<hr />
+<h1 id="tile-based-rendering">🧩 Tile-Based Rendering<a class="headerlink" href="#tile-based-rendering" title="Permanent link">&para;</a></h1>
+<p>The maze is drawn tile by tile.</p>
+<p>Each value in the maze grid represents a different visual element:</p>
+<div class="highlight"><pre><span></span><code>0 = floor
+1 = wall
+2 = 42 wall
+3 = duck/player
+4 = trail/path
+</code></pre></div>
+<p>The renderer reads the grid and chooses which image to draw.</p>
+<p>Example logic:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">cell</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">base_tile</span> <span class="o">=</span> <span class="n">assets</span><span class="o">.</span><span class="n">floor</span>
+<span class="k">elif</span> <span class="n">cell</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">base_tile</span> <span class="o">=</span> <span class="n">assets</span><span class="o">.</span><span class="n">floor</span>
+<span class="k">elif</span> <span class="n">cell</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">base_tile</span> <span class="o">=</span> <span class="n">assets</span><span class="o">.</span><span class="n">wall</span>
+<span class="k">elif</span> <span class="n">cell</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">base_tile</span> <span class="o">=</span> <span class="n">assets</span><span class="o">.</span><span class="n">wall_42</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">base_tile</span> <span class="o">=</span> <span class="n">assets</span><span class="o">.</span><span class="n">trail</span>
+</code></pre></div>
+<hr />
+<h1 id="drawing-the-player">🦆 Drawing the Player<a class="headerlink" href="#drawing-the-player" title="Permanent link">&para;</a></h1>
+<p>The duck is drawn as a separate image on top of the floor.</p>
+<p>This is important because the player should not permanently modify the maze grid.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">cell</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span>
+        <span class="n">mlx_ptr</span><span class="p">,</span>
+        <span class="n">win_ptr</span><span class="p">,</span>
+        <span class="n">assets</span><span class="o">.</span><span class="n">duck</span><span class="p">,</span>
+        <span class="n">screen_x</span><span class="p">,</span>
+        <span class="n">screen_y</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>This allows the player to move without destroying walls, floors, or trails.</p>
+<hr />
+<h1 id="drawing-entry-and-exit">🚪 Drawing Entry and Exit<a class="headerlink" href="#drawing-entry-and-exit" title="Permanent link">&para;</a></h1>
+<p>The maze entry and exit are logical cells.</p>
+<p>For rendering, they are converted to expanded grid positions.</p>
+<p>The renderer uses:</p>
+<div class="highlight"><pre><span></span><code><span class="n">logical_to_grid</span><span class="p">()</span>
+<span class="n">calculate_door_position</span><span class="p">()</span>
+</code></pre></div>
+<p>These functions are used to draw the entry and exit doors in the correct position.</p>
+<hr />
+<h1 id="coordinate-systems">🧭 Coordinate Systems<a class="headerlink" href="#coordinate-systems" title="Permanent link">&para;</a></h1>
+<p>The project uses two coordinate systems:</p>
+<h2 id="logical-coordinates">Logical Coordinates<a class="headerlink" href="#logical-coordinates" title="Permanent link">&para;</a></h2>
+<p>Used by the configuration file and maze structure.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>ENTRY=0,0
+EXIT=19,19
+</code></pre></div>
+<h2 id="grid-coordinates">Grid Coordinates<a class="headerlink" href="#grid-coordinates" title="Permanent link">&para;</a></h2>
+<p>Used by the expanded internal maze grid.</p>
+<p>Conversion:</p>
+<div class="highlight"><pre><span></span><code><span class="n">grid_x</span> <span class="o">=</span> <span class="n">logical_x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">grid_y</span> <span class="o">=</span> <span class="n">logical_y</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>
+<p>This allows the renderer to draw:
+- cells
+- walls
+- corridors
+- doors</p>
+<p>correctly.</p>
+<hr />
+<h1 id="keyboard-input">🎮 Keyboard Input<a class="headerlink" href="#keyboard-input" title="Permanent link">&para;</a></h1>
+<p>MLX can react to keyboard input using hooks.</p>
+<p>In this project, keyboard input is handled with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_key_hook</span><span class="p">()</span>
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_key_hook</span><span class="p">(</span>
+    <span class="n">win_ptr</span><span class="p">,</span>
+    <span class="k">lambda</span> <span class="n">key</span><span class="p">,</span> <span class="n">param</span><span class="p">:</span> <span class="n">key_hook</span><span class="p">(</span>
+        <span class="n">key</span><span class="p">,</span>
+        <span class="n">game</span><span class="p">,</span>
+        <span class="n">frame</span><span class="p">,</span>
+        <span class="n">param</span><span class="p">,</span>
+        <span class="n">mlx</span><span class="p">,</span>
+        <span class="n">mlx_ptr</span><span class="p">,</span>
+        <span class="n">win_ptr</span>
+    <span class="p">),</span>
+    <span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>The <code>key_hook()</code> function controls:
+- menu selection
+- maze regeneration
+- BFS animation
+- player mode
+- theme switching
+- exiting the game</p>
+<hr />
+<h1 id="key-controls">⌨️ Key Controls<a class="headerlink" href="#key-controls" title="Permanent link">&para;</a></h1>
+<p>The project uses numeric keys and arrow keys.</p>
+<div class="highlight"><pre><span></span><code>1        Generate new maze
+2        Show shortest path
+3        Show BFS exploration animation
+4        Player mode
+5        Change theme
+6 / ESC  Exit
+Arrows   Move player
+</code></pre></div>
+<hr />
+<h1 id="game-state-and-mlx">🎮 Game State and MLX<a class="headerlink" href="#game-state-and-mlx" title="Permanent link">&para;</a></h1>
+<p>MLX itself does not know what mode the game is in.</p>
+<p>The project stores that information inside:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">GameState</span><span class="p">:</span>
+</code></pre></div>
+<p>The renderer checks the game state every frame.</p>
+<p>Example states:</p>
+<div class="highlight"><pre><span></span><code><span class="n">game</span><span class="o">.</span><span class="n">mode</span>
+<span class="n">game</span><span class="o">.</span><span class="n">theme</span>
+<span class="n">game</span><span class="o">.</span><span class="n">show_path</span>
+<span class="n">game</span><span class="o">.</span><span class="n">animate_bfs</span>
+<span class="n">game</span><span class="o">.</span><span class="n">playing</span>
+<span class="n">game</span><span class="o">.</span><span class="n">game_won</span>
+</code></pre></div>
+<p>This allows MLX to draw different things depending on the current mode.</p>
+<hr />
+<h1 id="the-mlx-loop">🔁 The MLX Loop<a class="headerlink" href="#the-mlx-loop" title="Permanent link">&para;</a></h1>
+<p>MLX uses a loop to keep the window alive.</p>
+<p>In this project:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop_hook</span><span class="p">(</span>
+    <span class="n">mlx_ptr</span><span class="p">,</span>
+    <span class="n">on_loop</span><span class="p">,</span>
+    <span class="kc">None</span>
+<span class="p">)</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>The loop repeatedly calls <code>on_loop()</code>.</p>
+<p>This function updates:
+- menu rendering
+- maze rendering
+- animations
+- player movement display
+- exit animation</p>
+<hr />
+<h1 id="animation-with-mlx">🎞️ Animation With MLX<a class="headerlink" href="#animation-with-mlx" title="Permanent link">&para;</a></h1>
+<p>MLX does not provide a complex animation system by itself.</p>
+<p>Instead, the project creates animation manually using:
+- frame counters
+- time checks
+- partial path drawing
+- repeated redraws</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">last_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()]</span>
+</code></pre></div>
+<p>The renderer only advances the animation when enough time has passed.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">now</span> <span class="o">-</span> <span class="n">last_time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.05</span><span class="p">:</span>
+</code></pre></div>
+<p>This prevents animations from running too fast.</p>
+<hr />
+<h1 id="path-animation">🦆 Path Animation<a class="headerlink" href="#path-animation" title="Permanent link">&para;</a></h1>
+<p>Option 2 shows the shortest path.</p>
+<p>The renderer progressively draws part of the path:</p>
+<div class="highlight"><pre><span></span><code><span class="n">game</span><span class="o">.</span><span class="n">path</span><span class="p">[:</span><span class="n">frame</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</code></pre></div>
+<p>This creates the effect of the duck moving through the maze.</p>
+<hr />
+<h1 id="bfs-exploration-animation">🌊 BFS Exploration Animation<a class="headerlink" href="#bfs-exploration-animation" title="Permanent link">&para;</a></h1>
+<p>Option 3 shows how BFS explores the maze.</p>
+<p>Instead of displaying only the final path, it displays explored cells:</p>
+<div class="highlight"><pre><span></span><code><span class="n">game</span><span class="o">.</span><span class="n">explored</span><span class="p">[:</span><span class="n">frame</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</code></pre></div>
+<p>This visualizes the search process step by step.</p>
+<hr />
+<h1 id="exit-animation">🚪 Exit Animation<a class="headerlink" href="#exit-animation" title="Permanent link">&para;</a></h1>
+<p>The exit uses two images:</p>
+<div class="highlight"><pre><span></span><code><span class="n">assets</span><span class="o">.</span><span class="n">exit</span>
+<span class="n">assets</span><span class="o">.</span><span class="n">exit2</span>
+</code></pre></div>
+<p>The renderer alternates between them using time:</p>
+<div class="highlight"><pre><span></span><code><span class="n">animation_frame</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mf">3.33</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
+</code></pre></div>
+<p>This creates a simple animated portal effect.</p>
+<hr />
+<h1 id="clearing-and-syncing-the-window">🧹 Clearing and Syncing the Window<a class="headerlink" href="#clearing-and-syncing-the-window" title="Permanent link">&para;</a></h1>
+<p>Sometimes the renderer needs to clear the old screen before drawing a new state.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_clear_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>The project also uses:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_do_sync</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>to help synchronize visual updates.</p>
+<p>This is useful when:
+- changing themes
+- regenerating the maze
+- switching modes
+- entering player mode</p>
+<hr />
+<h1 id="closing-the-window">❌ Closing the Window<a class="headerlink" href="#closing-the-window" title="Permanent link">&para;</a></h1>
+<p>The project handles the window close event with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_hook</span><span class="p">(</span>
+    <span class="n">win_ptr</span><span class="p">,</span>
+    <span class="mi">33</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">close</span><span class="p">,</span>
+    <span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>The <code>close()</code> function exits the program:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<p>The user can also quit with:</p>
+<div class="highlight"><pre><span></span><code>ESC
+6
+</code></pre></div>
+<hr />
+<h1 id="themes-with-mlx">🎨 Themes With MLX<a class="headerlink" href="#themes-with-mlx" title="Permanent link">&para;</a></h1>
+<p>The renderer supports different visual themes.</p>
+<p>Current themes:</p>
+<div class="highlight"><pre><span></span><code>normal
+gothic
+</code></pre></div>
+<p>The selected theme changes which assets are loaded.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="sa">f</span><span class="s2">&quot;assets/generated/</span><span class="si">{</span><span class="n">theme</span><span class="si">}</span><span class="s2">_floor_</span><span class="si">{</span><span class="n">tile_size</span><span class="si">}</span><span class="s2">.xpm&quot;</span>
+</code></pre></div>
+<p>This allows the same maze logic to be displayed with different visual styles.</p>
+<hr />
+<h1 id="mlx-limitations">🧱 MLX Limitations<a class="headerlink" href="#mlx-limitations" title="Permanent link">&para;</a></h1>
+<p>MLX is intentionally simple.</p>
+<p>It does not provide:
+- advanced UI widgets
+- built-in animation tools
+- sprite management
+- automatic scaling
+- layout systems
+- scene management</p>
+<p>Because of that, the project manually handles:
+- asset conversion
+- image scaling
+- menu drawing
+- animation timing
+- player movement
+- screen updates</p>
+<hr />
+<h1 id="why-mlx-was-used">🧠 Why MLX Was Used<a class="headerlink" href="#why-mlx-was-used" title="Permanent link">&para;</a></h1>
+<p>MLX was used because:
+- it is part of the 42 graphics ecosystem
+- it teaches low-level rendering concepts
+- it gives direct control over pixels and images
+- it integrates well with simple game loops
+- it is suitable for tile-based projects</p>
+<p>For this project, MLX is enough to create:
+- a graphical maze
+- menus
+- animations
+- player movement
+- theme switching</p>
+<hr />
+<h1 id="role-of-mlx-in-a-maze-ing">🏗️ Role of MLX in A-Maze-ing<a class="headerlink" href="#role-of-mlx-in-a-maze-ing" title="Permanent link">&para;</a></h1>
+<p>MLX acts as the visual interface between the user and the maze engine.</p>
+<div class="highlight"><pre><span></span><code>MazeGenerator
+      │
+      ▼
+Maze + Path + Explored Cells
+      │
+      ▼
+GameState
+      │
+      ▼
+MLX Renderer
+      │
+      ▼
+Window Output
+</code></pre></div>
+<p>The maze generation system stays independent from MLX.</p>
+<p>This separation keeps the project modular:
+- <code>mazegen/</code> handles maze logic
+- <code>render/</code> handles graphics and interaction</p>
+<hr />
+<h1 id="summary">🎯 Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h1>
+<p>In A-Maze-ing, MiniLibX is used to:
+- open the game window
+- load XPM images
+- draw the maze
+- render menus and banners
+- handle keyboard input
+- animate BFS and pathfinding
+- display player movement
+- support visual themes</p>
+<p>The project builds a higher-level rendering system on top of MLX by combining:
+- <code>GameState</code>
+- dynamic assets
+- tile rendering
+- event hooks
+- animation logic</p>
+<p>This allows a simple graphics library to support a complete interactive maze visualizer.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

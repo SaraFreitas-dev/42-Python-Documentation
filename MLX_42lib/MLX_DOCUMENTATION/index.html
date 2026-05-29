@@ -1,0 +1,4746 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Git/git_workflow_for_42/">
+      
+      
+        <link rel="next" href="../../Makefile/Makefile/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>MinilibX (MLX) — Complete Python Documentation - 42 School Python Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#minilibx-mlx-complete-python-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="42 School Python Documentation" class="md-header__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            42 School Python Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MinilibX (MLX) — Complete Python Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="42 School Python Documentation" class="md-nav__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    42 School Python Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 42 School Python Documentation &amp; Project Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    42 Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    42 Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A maze ing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    A maze ing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/export-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A-Maze-ing Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/maze-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maze Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/mlx-lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/A-maze-ing/render/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Render System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/Drone_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛩️ Fly-in — Drone System Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/Parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📄 Parsing — Input File Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../42_Projects/Fly-in/simulator_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulator System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms and data structures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithms and data structures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithms_and_data_structures/bfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Breadth-First Search (BFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithms_and_data_structures/dfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Depth-First Search (DFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithms_and_data_structures/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithms_and_data_structures/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Git/git_workflow_for_42/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Workflow for 42 School
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX 42lib
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MLX 42lib
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MinilibX (MLX) — Complete Python Documentation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MinilibX (MLX) — Complete Python Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-22-mlx_clxv-linuxxcbvulkan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 2.2 — mlx_CLXV — Linux/XCB/Vulkan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-mlx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is MLX?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-it-works-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How it Works (Architecture)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Getting Started
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-initialization-teardown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Initialization &amp; Teardown
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Initialization &amp; Teardown">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_init()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_releasemlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_release(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_new_windowmlx_ptr-width-height-title" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_new_window(mlx_ptr, width, height, title)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_clear_windowmlx_ptr-win_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_clear_window(mlx_ptr, win_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_destroy_windowmlx_ptr-win_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_destroy_window(mlx_ptr, win_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-drawing-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Drawing Directly
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Drawing Directly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_pixel_putmlx_ptr-win_ptr-x-y-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_pixel_put(mlx_ptr, win_ptr, x, y, color)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_string_putmlx_ptr-win_ptr-x-y-color-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_string_put(mlx_ptr, win_ptr, x, y, color, string)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Images
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_new_imagemlx_ptr-width-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_new_image(mlx_ptr, width, height)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_get_data_addrimg_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_get_data_addr(img_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_put_image_to_windowmlx_ptr-win_ptr-img_ptr-x-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, x, y)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_destroy_imagemlx_ptr-img_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_destroy_image(mlx_ptr, img_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-loading-image-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Loading Image Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Loading Image Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_xpm_file_to_imagemlx_ptr-filename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_xpm_file_to_image(mlx_ptr, filename)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_png_file_to_imagemlx_ptr-filename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_png_file_to_image(mlx_ptr, filename)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-the-event-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. The Event Loop
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. The Event Loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_loopmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_loop(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_loop_exitmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_loop_exit(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-keyboard-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Keyboard Hooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Keyboard Hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_key_hookwin_ptr-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_key_hook(win_ptr, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-mouse-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Mouse Hooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Mouse Hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_hookwin_ptr-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_hook(win_ptr, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-expose-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Expose Hook
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Expose Hook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_expose_hookwin_ptr-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_expose_hook(win_ptr, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-loop-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Loop Hook
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Loop Hook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_loop_hookmlx_ptr-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_loop_hook(mlx_ptr, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-generic-hook-mlx_hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Generic Hook — mlx_hook
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Generic Hook — mlx_hook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_hookwin_ptr-x_event-x_mask-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_hook(win_ptr, x_event, x_mask, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-mouse-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Mouse Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Mouse Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_hidemlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_hide(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_showmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_show(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_movemlx_ptr-x-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_move(mlx_ptr, x, y)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_get_posmlx_ptr-returns-tuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_get_pos(mlx_ptr) — returns tuple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-keyboard-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Keyboard Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Keyboard Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_do_key_autorepeatoffmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_do_key_autorepeatoff(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_do_key_autorepeatonmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_do_key_autorepeaton(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-screen-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Screen Info
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Screen Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_get_screen_sizemlx_ptr-returns-tuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_get_screen_size(mlx_ptr) — returns tuple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-sync-flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Sync &amp; Flush
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. Sync &amp; Flush">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_do_syncmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_do_sync(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_syncmlx_ptr-cmd-img_or_win_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_sync(mlx_ptr, cmd, img_or_win_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-color-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Color System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-practical-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Practical Recipes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. Practical Recipes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-hover-effect-on-a-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Hover Effect on a Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-clickable-image-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Clickable Image Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-custom-mouse-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Custom Mouse Cursor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-drawing-to-an-image-buffer-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Drawing to an Image Buffer (Fast)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-multiple-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Multiple Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-detecting-key-held-down-keypress-not-keyrelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. Detecting Key Held Down (KeyPress, not KeyRelease)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-scene-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Scene / State Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-animation-frame-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. Animation / Frame Counter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-clean-program-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Clean Program Exit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-limitations-known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Limitations &amp; Known Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-quick-reference-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Quick Reference Card
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Makefile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Makefile/Makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Makefile/python_makefile_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Python Makefile Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python core
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python core
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data validation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data validation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Data_validation/json_and_data_validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON and Data Validation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Data_validation/pydantic_concepts_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic v2 - Core Concepts Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dunder methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Dunder_methods/dunder_methods_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✨ Python Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Dunder_methods/python_introspection_and_dunder_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Introspection &amp; Useful Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment and packages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment and packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Environment_and_packages/packages_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Python Packages Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Environment_and_packages/virtual_environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Virtual Environments Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error handling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Error handling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Error_handling/exceptions_try_except/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚨 Python Exceptions &amp; Try/Except Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Error_handling/traceback_debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 Python Traceback &amp; Debugging Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional programming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Functional programming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Functional_programming/callable_and_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Callable and Functions in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Functional_programming/closures_and_nonlocal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Closures and nonlocal in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Functional_programming/decorators_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decorators Guide in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/Functional_programming/lambda_functions_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Python Lambda Functions Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OOP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OOP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/OOP/class_methods_and_attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Class Methods &amp; Attributes Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python_core/OOP/oop_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object-Oriented Programming (OOP) Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flake8 and mypy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flake8 and mypy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flake8_and_mypy/mypy_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mypy and flake8 Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flake8_and_mypy/typing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Typing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-22-mlx_clxv-linuxxcbvulkan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 2.2 — mlx_CLXV — Linux/XCB/Vulkan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-mlx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is MLX?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-it-works-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How it Works (Architecture)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Getting Started
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-initialization-teardown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Initialization &amp; Teardown
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Initialization &amp; Teardown">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_init()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_releasemlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_release(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_new_windowmlx_ptr-width-height-title" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_new_window(mlx_ptr, width, height, title)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_clear_windowmlx_ptr-win_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_clear_window(mlx_ptr, win_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_destroy_windowmlx_ptr-win_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_destroy_window(mlx_ptr, win_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-drawing-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Drawing Directly
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Drawing Directly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_pixel_putmlx_ptr-win_ptr-x-y-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_pixel_put(mlx_ptr, win_ptr, x, y, color)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_string_putmlx_ptr-win_ptr-x-y-color-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_string_put(mlx_ptr, win_ptr, x, y, color, string)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Images
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_new_imagemlx_ptr-width-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_new_image(mlx_ptr, width, height)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_get_data_addrimg_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_get_data_addr(img_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_put_image_to_windowmlx_ptr-win_ptr-img_ptr-x-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, x, y)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_destroy_imagemlx_ptr-img_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_destroy_image(mlx_ptr, img_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-loading-image-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Loading Image Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Loading Image Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_xpm_file_to_imagemlx_ptr-filename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_xpm_file_to_image(mlx_ptr, filename)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_png_file_to_imagemlx_ptr-filename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_png_file_to_image(mlx_ptr, filename)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-the-event-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. The Event Loop
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. The Event Loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_loopmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_loop(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_loop_exitmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_loop_exit(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-keyboard-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Keyboard Hooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Keyboard Hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_key_hookwin_ptr-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_key_hook(win_ptr, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-mouse-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Mouse Hooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Mouse Hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_hookwin_ptr-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_hook(win_ptr, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-expose-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Expose Hook
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Expose Hook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_expose_hookwin_ptr-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_expose_hook(win_ptr, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-loop-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Loop Hook
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Loop Hook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_loop_hookmlx_ptr-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_loop_hook(mlx_ptr, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-generic-hook-mlx_hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Generic Hook — mlx_hook
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Generic Hook — mlx_hook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_hookwin_ptr-x_event-x_mask-callback-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_hook(win_ptr, x_event, x_mask, callback, param)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-mouse-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Mouse Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Mouse Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_hidemlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_hide(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_showmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_show(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_movemlx_ptr-x-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_move(mlx_ptr, x, y)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_mouse_get_posmlx_ptr-returns-tuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_mouse_get_pos(mlx_ptr) — returns tuple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-keyboard-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Keyboard Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Keyboard Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_do_key_autorepeatoffmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_do_key_autorepeatoff(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_do_key_autorepeatonmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_do_key_autorepeaton(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-screen-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Screen Info
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Screen Info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_get_screen_sizemlx_ptr-returns-tuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_get_screen_size(mlx_ptr) — returns tuple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-sync-flush" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Sync &amp; Flush
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. Sync &amp; Flush">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlx_do_syncmlx_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_do_sync(mlx_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlx_syncmlx_ptr-cmd-img_or_win_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mlx_sync(mlx_ptr, cmd, img_or_win_ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-color-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Color System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-practical-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Practical Recipes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. Practical Recipes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-hover-effect-on-a-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Hover Effect on a Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-clickable-image-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Clickable Image Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-custom-mouse-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Custom Mouse Cursor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-drawing-to-an-image-buffer-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Drawing to an Image Buffer (Fast)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-multiple-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Multiple Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-detecting-key-held-down-keypress-not-keyrelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. Detecting Key Held Down (KeyPress, not KeyRelease)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-scene-state-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Scene / State Machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-animation-frame-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. Animation / Frame Counter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-clean-program-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Clean Program Exit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-limitations-known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Limitations &amp; Known Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-quick-reference-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Quick Reference Card
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="minilibx-mlx-complete-python-documentation">MinilibX (MLX) — Complete Python Documentation<a class="headerlink" href="#minilibx-mlx-complete-python-documentation" title="Permanent link">&para;</a></h1>
+<h3 id="version-22-mlx_clxv-linuxxcbvulkan">Version 2.2 — mlx_CLXV — Linux/XCB/Vulkan<a class="headerlink" href="#version-22-mlx_clxv-linuxxcbvulkan" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#1-what-is-mlx">What is MLX?</a></li>
+<li><a href="#2-how-it-works-architecture">How it Works (Architecture)</a></li>
+<li><a href="#3-getting-started">Getting Started</a></li>
+<li><a href="#4-initialization--teardown">Initialization &amp; Teardown</a></li>
+<li><a href="#5-windows">Windows</a></li>
+<li><a href="#6-drawing-directly">Drawing Directly</a></li>
+<li><a href="#7-images">Images</a></li>
+<li><a href="#8-loading-image-files">Loading Image Files</a></li>
+<li><a href="#9-the-event-loop">The Event Loop</a></li>
+<li><a href="#10-keyboard-hooks">Keyboard Hooks</a></li>
+<li><a href="#11-mouse-hooks">Mouse Hooks</a></li>
+<li><a href="#12-expose-hook">Expose Hook</a></li>
+<li><a href="#13-loop-hook">Loop Hook</a></li>
+<li><a href="#14-generic-hook--mlx_hook">Generic Hook — mlx_hook</a></li>
+<li><a href="#15-mouse-utilities">Mouse Utilities</a></li>
+<li><a href="#16-keyboard-utilities">Keyboard Utilities</a></li>
+<li><a href="#17-screen-info">Screen Info</a></li>
+<li><a href="#18-sync--flush">Sync &amp; Flush</a></li>
+<li><a href="#19-color-system">Color System</a></li>
+<li><a href="#20-practical-recipes">Practical Recipes</a></li>
+<li><a href="#21-limitations--known-issues">Limitations &amp; Known Issues</a></li>
+<li><a href="#22-quick-reference-card">Quick Reference Card</a></li>
+</ol>
+<hr />
+<h2 id="1-what-is-mlx">1. What is MLX?<a class="headerlink" href="#1-what-is-mlx" title="Permanent link">&para;</a></h2>
+<p><strong>MinilibX</strong> (MLX) is a minimal graphical library created by Olivier Crouzet for 42 school students. Its entire purpose is to let you open a window, draw pixels in it, load images, and react to keyboard and mouse events — without needing to know Vulkan, X11, or any other low-level graphics system.</p>
+<p>It is intentionally small. It does <strong>not</strong> provide:
+- Text rendering beyond a basic fixed-size bitmap font
+- Audio
+- 3D or GPU shaders (the GPU is used internally, but not exposed)
+- Menus, widgets, or UI components
+- Networking or remote display</p>
+<p>Everything beyond these basics is for you to build.</p>
+<p>The Python version (<code>mlx_CLXV 2.2</code>) is a <code>ctypes</code> wrapper around the C library (<code>libmlx.so</code>). Every Python method maps directly to a C function with the same name.</p>
+<hr />
+<h2 id="2-how-it-works-architecture">2. How it Works (Architecture)<a class="headerlink" href="#2-how-it-works-architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Your Python Code
+      │
+      ▼
+  Mlx class (mlx.py)        ← Python ctypes wrapper
+      │
+      ▼
+  libmlx.so                 ← compiled C library
+      │
+      ├── XCB backend       ← talks to the X server (window, events)
+      └── Vulkan backend    ← GPU drawing (pixels, images, text)
+</code></pre></div>
+<p><strong>The main loop</strong> (<code>mlx_loop</code>) is an infinite event loop inside the C library. It:
+- Waits for events (key presses, mouse clicks, window events)
+- Calls your registered Python callback functions when those events occur
+- Calls your loop hook function on every iteration when no other event is pending</p>
+<p>Your program must register hooks <strong>before</strong> calling <code>mlx_loop</code>. Once inside the loop, your code only runs when a hook fires.</p>
+<hr />
+<h2 id="3-getting-started">3. Getting Started<a class="headerlink" href="#3-getting-started" title="Permanent link">&para;</a></h2>
+<p>Minimum working program:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mlx</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mlx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">65307</span><span class="p">:</span>  <span class="c1"># ESC</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">mlx</span> <span class="o">=</span> <span class="n">Mlx</span><span class="p">()</span>
+<span class="n">mlx_ptr</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_init</span><span class="p">()</span>
+<span class="n">win_ptr</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_new_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="s2">&quot;My Window&quot;</span><span class="p">)</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_key_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="n">on_key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># close button</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="4-initialization-teardown">4. Initialization &amp; Teardown<a class="headerlink" href="#4-initialization-teardown" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_init"><code>mlx_init()</code><a class="headerlink" href="#mlx_init" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx_ptr</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_init</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Must be called first</strong>, before anything else. Creates the connection to the display system (XCB + Vulkan).</p>
+<ul>
+<li><strong>Returns:</strong> connection identifier (<code>void *</code>) — pass this to most other functions</li>
+<li><strong>Returns <code>None</code></strong> on failure</li>
+</ul>
+<hr />
+<h3 id="mlx_releasemlx_ptr"><code>mlx_release(mlx_ptr)</code><a class="headerlink" href="#mlx_releasemlx_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_release</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Disconnects from the display and frees all internal resources. Call this at the end of your program after the loop exits.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h2 id="5-windows">5. Windows<a class="headerlink" href="#5-windows" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_new_windowmlx_ptr-width-height-title"><code>mlx_new_window(mlx_ptr, width, height, title)</code><a class="headerlink" href="#mlx_new_windowmlx_ptr-width-height-title" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">win_ptr</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_new_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="mi">1600</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="s2">&quot;A-MAZE-ING&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Creates a new window on screen. MLX can manage <strong>multiple windows simultaneously</strong> — each call creates a separate window.</p>
+<ul>
+<li><strong><code>width</code></strong>: window width in pixels</li>
+<li><strong><code>height</code></strong>: window height in pixels</li>
+<li><strong><code>title</code></strong>: text shown in the window's title bar (string, auto-encoded to UTF-8)</li>
+<li><strong>Returns:</strong> window identifier — pass this to drawing and hook functions</li>
+<li><strong>Returns <code>None</code></strong> on failure</li>
+</ul>
+<blockquote>
+<p>Origin <code>(0, 0)</code> is the <strong>top-left corner</strong>. X increases right, Y increases downward.</p>
+</blockquote>
+<hr />
+<h3 id="mlx_clear_windowmlx_ptr-win_ptr"><code>mlx_clear_window(mlx_ptr, win_ptr)</code><a class="headerlink" href="#mlx_clear_windowmlx_ptr-win_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_clear_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Fills the entire window with <strong>black</strong> (<code>0x000000</code>). Use this to erase everything before redrawing each frame.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h3 id="mlx_destroy_windowmlx_ptr-win_ptr"><code>mlx_destroy_window(mlx_ptr, win_ptr)</code><a class="headerlink" href="#mlx_destroy_windowmlx_ptr-win_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_destroy_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Closes and destroys the window. The window identifier becomes invalid after this call. Useful when managing multiple windows and you want to close just one.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h2 id="6-drawing-directly">6. Drawing Directly<a class="headerlink" href="#6-drawing-directly" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_pixel_putmlx_ptr-win_ptr-x-y-color"><code>mlx_pixel_put(mlx_ptr, win_ptr, x, y, color)</code><a class="headerlink" href="#mlx_pixel_putmlx_ptr-win_ptr-x-y-color" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_pixel_put</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mh">0xFFFFFFFF</span><span class="p">)</span>
+</code></pre></div>
+<p>Draws a <strong>single pixel</strong> at position <code>(x, y)</code> with the given color. This is the most basic drawing primitive.</p>
+<ul>
+<li><strong><code>x</code>, <code>y</code></strong>: pixel coordinates (top-left origin)</li>
+<li><strong><code>color</code></strong>: unsigned int, format <code>0xAARRGGBB</code> (see Color section)</li>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<blockquote>
+<p><strong>Warning:</strong> <code>mlx_pixel_put</code> is <strong>slow</strong> because it sends each pixel individually to the GPU. For anything beyond a few pixels, use images instead.</p>
+</blockquote>
+<hr />
+<h3 id="mlx_string_putmlx_ptr-win_ptr-x-y-color-string"><code>mlx_string_put(mlx_ptr, win_ptr, x, y, color, string)</code><a class="headerlink" href="#mlx_string_putmlx_ptr-win_ptr-x-y-color-string" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_string_put</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mh">0xFFFFFFFF</span><span class="p">,</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Renders a text string at position <code>(x, y)</code> using MLX's <strong>built-in bitmap font</strong>.</p>
+<ul>
+<li><strong><code>x</code>, <code>y</code></strong>: position of the top-left of the first character</li>
+<li><strong><code>color</code></strong>: text color as unsigned int (only RGB used, alpha is forced to 255)</li>
+<li><strong><code>string</code></strong>: the text to display (auto-encoded to UTF-8)</li>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<p><strong>Font details:</strong>
+- Fixed-size bitmap font (same font on all platforms using this MLX version)
+- Supports ASCII characters 32–127 (space through <code>~</code>)
+- Characters outside that range display as a placeholder
+- You <strong>cannot</strong> change the font size or font face
+- Approximately 7–8 pixels wide per character, ~13 pixels tall</p>
+<p><strong>What you can do with text:</strong>
+- Change color to anything (white, yellow, red, etc.)
+- Position it anywhere in the window
+- Draw it on top of images (images drawn after will cover it)
+- Create simple labels, counters, status text</p>
+<p><strong>What you cannot do:</strong>
+- Change font size
+- Use bold/italic
+- Get the pixel width of a string (estimate ~7–8 px per char)</p>
+<hr />
+<h2 id="7-images">7. Images<a class="headerlink" href="#7-images" title="Permanent link">&para;</a></h2>
+<p>Images are the <strong>recommended way to draw</strong> in MLX. Instead of sending pixel-by-pixel to the GPU, you build an image in memory then send the whole thing at once.</p>
+<h3 id="mlx_new_imagemlx_ptr-width-height"><code>mlx_new_image(mlx_ptr, width, height)</code><a class="headerlink" href="#mlx_new_imagemlx_ptr-width-height" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">img_ptr</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_new_image</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre></div>
+<p>Creates a blank image in memory of the given size.</p>
+<ul>
+<li><strong>Returns:</strong> image identifier, or <code>None</code> on failure</li>
+</ul>
+<hr />
+<h3 id="mlx_get_data_addrimg_ptr"><code>mlx_get_data_addr(img_ptr)</code><a class="headerlink" href="#mlx_get_data_addrimg_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">data</span><span class="p">,</span> <span class="n">bits_per_pixel</span><span class="p">,</span> <span class="n">size_line</span><span class="p">,</span> <span class="n">img_format</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_get_data_addr</span><span class="p">(</span><span class="n">img_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Returns a <strong>writable memoryview</strong> of the image's raw pixel data, plus metadata. This is the key function for drawing into images.</p>
+<ul>
+<li><strong><code>data</code></strong>: <code>memoryview</code> (cast to <code>'B'</code>) — writable byte buffer of the image</li>
+<li><strong><code>bits_per_pixel</code></strong>: how many bits represent one pixel (typically <code>32</code>)</li>
+<li><strong><code>size_line</code></strong>: number of <strong>bytes</strong> per row of the image</li>
+<li><strong><code>img_format</code></strong>:</li>
+<li><code>0</code> = <code>B8G8R8A8</code> byte order</li>
+<li><code>1</code> = <code>A8R8G8B8</code> byte order</li>
+</ul>
+<p><strong>Writing a single pixel into an image:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">put_pixel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">size_line</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color_bytes</span><span class="p">):</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">size_line</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">color_bytes</span>
+
+<span class="c1"># Example: white pixel at (10, 20)</span>
+<span class="n">put_pixel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">size_line</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="p">(</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>Filling the whole image with one color:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">)</span>  <span class="c1"># red, fully opaque</span>
+<span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size_line</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+</code></pre></div>
+<hr />
+<h3 id="mlx_put_image_to_windowmlx_ptr-win_ptr-img_ptr-x-y"><code>mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, x, y)</code><a class="headerlink" href="#mlx_put_image_to_windowmlx_ptr-win_ptr-img_ptr-x-y" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="n">img_ptr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<p>Renders an image onto the window at position <code>(x, y)</code>. The image's top-left corner lands at <code>(x, y)</code>. Images drawn later will appear on top of earlier ones.</p>
+<ul>
+<li><strong><code>x</code>, <code>y</code></strong>: can be negative (image partially off-screen is fine)</li>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<blockquote>
+<p>This is fast — it sends the whole image buffer to the GPU in one call.</p>
+</blockquote>
+<hr />
+<h3 id="mlx_destroy_imagemlx_ptr-img_ptr"><code>mlx_destroy_image(mlx_ptr, img_ptr)</code><a class="headerlink" href="#mlx_destroy_imagemlx_ptr-img_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_destroy_image</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">img_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Frees the memory for an image. Always destroy images you no longer need to avoid memory leaks.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h2 id="8-loading-image-files">8. Loading Image Files<a class="headerlink" href="#8-loading-image-files" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_xpm_file_to_imagemlx_ptr-filename"><code>mlx_xpm_file_to_image(mlx_ptr, filename)</code><a class="headerlink" href="#mlx_xpm_file_to_imagemlx_ptr-filename" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">img_ptr</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_xpm_file_to_image</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="s2">&quot;assets/wall.xpm&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Loads an <strong>XPM file</strong> and creates an image from it. <strong>XPM is the recommended format</strong> for this MLX version — it is the most reliable loader.</p>
+<ul>
+<li><strong><code>filename</code></strong>: path to the <code>.xpm</code> file (string, auto-encoded)</li>
+<li><strong>Returns:</strong> tuple <code>(img_ptr, width, height)</code></li>
+<li><code>img_ptr</code> is <code>None</code> on failure</li>
+<li><strong>Supports transparency</strong> in XPM</li>
+</ul>
+<blockquote>
+<p>XPM files can be generated from PNG using ImageMagick:
+<div class="highlight"><pre><span></span><code>magick<span class="w"> </span>input.png<span class="w"> </span>output.xpm
+</code></pre></div></p>
+</blockquote>
+<hr />
+<h3 id="mlx_png_file_to_imagemlx_ptr-filename"><code>mlx_png_file_to_image(mlx_ptr, filename)</code><a class="headerlink" href="#mlx_png_file_to_imagemlx_ptr-filename" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">img_ptr</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_png_file_to_image</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="s2">&quot;assets/wall.png&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Loads a <strong>PNG file</strong> and creates an image from it.</p>
+<ul>
+<li><strong>Returns:</strong> tuple <code>(img_ptr, width, height)</code></li>
+<li><code>img_ptr</code> is <code>None</code> on failure</li>
+</ul>
+<blockquote>
+<p><strong>Warning:</strong> The PNG loader in this MLX version is incomplete and unreliable on some systems/PNG types. Prefer XPM for production use — convert PNGs to XPM first with ImageMagick.</p>
+</blockquote>
+<hr />
+<h2 id="9-the-event-loop">9. The Event Loop<a class="headerlink" href="#9-the-event-loop" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_loopmlx_ptr"><code>mlx_loop(mlx_ptr)</code><a class="headerlink" href="#mlx_loopmlx_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>  <span class="c1"># ← program runs here until exit</span>
+</code></pre></div>
+<p>Starts the <strong>infinite event loop</strong>. This call <strong>never returns</strong> under normal operation. The program now runs entirely through callbacks registered with the various hook functions.</p>
+<ul>
+<li>Must be called <strong>after</strong> all hooks are registered</li>
+<li>All windows, images, and hooks must be set up <strong>before</strong> this call</li>
+<li>Returns only if <code>mlx_loop_exit</code> is called from within a callback</li>
+</ul>
+<blockquote>
+<p><strong>Note for Python:</strong> You cannot catch <code>Ctrl+C</code> (SIGINT) while inside <code>mlx_loop</code>. Use <code>Ctrl+\</code> (SIGQUIT) to force-kill the process, or call <code>os._exit(0)</code> from within a key hook.</p>
+</blockquote>
+<hr />
+<h3 id="mlx_loop_exitmlx_ptr"><code>mlx_loop_exit(mlx_ptr)</code><a class="headerlink" href="#mlx_loop_exitmlx_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop_exit</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Signals the event loop to stop. <code>mlx_loop</code> will return after this is called. Use this for clean shutdown instead of <code>os._exit(0)</code> when you want code to run after the loop (resource cleanup, etc.).</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h2 id="10-keyboard-hooks">10. Keyboard Hooks<a class="headerlink" href="#10-keyboard-hooks" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_key_hookwin_ptr-callback-param"><code>mlx_key_hook(win_ptr, callback, param)</code><a class="headerlink" href="#mlx_key_hookwin_ptr-callback-param" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_key</span><span class="p">(</span><span class="n">keycode</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Key released: </span><span class="si">{</span><span class="n">keycode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_key_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="n">on_key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>Registers a function to call when a <strong>key is released</strong> (KeyRelease event, not KeyPress).</p>
+<ul>
+<li><strong><code>callback</code></strong>: function with signature <code>(keycode: int, param: any) -&gt; None</code></li>
+<li><strong><code>param</code></strong>: any Python object, passed back to the callback unchanged</li>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<p><strong>To disable the hook:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_key_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Common key codes (Linux/XCB):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Code</th>
+<th>Key</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESC</td>
+<td>65307</td>
+<td>Space</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>65293</td>
+<td>Tab</td>
+<td>65289</td>
+</tr>
+<tr>
+<td>Up arrow</td>
+<td>65362</td>
+<td>Down</td>
+<td>65364</td>
+</tr>
+<tr>
+<td>Left</td>
+<td>65361</td>
+<td>Right</td>
+<td>65363</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>97</td>
+<td><code>z</code></td>
+<td>122</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>48</td>
+<td><code>9</code></td>
+<td>57</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>49</td>
+<td><code>2</code></td>
+<td>50</td>
+</tr>
+<tr>
+<td>F1</td>
+<td>65470</td>
+<td>F12</td>
+<td>65481</td>
+</tr>
+<tr>
+<td>Backspace</td>
+<td>65288</td>
+<td>Delete</td>
+<td>65535</td>
+</tr>
+<tr>
+<td>Shift (L)</td>
+<td>65505</td>
+<td>Ctrl (L)</td>
+<td>65507</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Find any key code by printing it: <code>print(f"Key: {keycode}")</code></p>
+</blockquote>
+<hr />
+<h2 id="11-mouse-hooks">11. Mouse Hooks<a class="headerlink" href="#11-mouse-hooks" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_mouse_hookwin_ptr-callback-param"><code>mlx_mouse_hook(win_ptr, callback, param)</code><a class="headerlink" href="#mlx_mouse_hookwin_ptr-callback-param" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_mouse</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Button </span><span class="si">{</span><span class="n">button</span><span class="si">}</span><span class="s2"> clicked at (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="n">on_mouse</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>Registers a function to call when a <strong>mouse button is pressed</strong>.</p>
+<ul>
+<li><strong><code>callback</code></strong>: function with signature <code>(button: int, x: int, y: int, param: any) -&gt; None</code></li>
+<li><code>button</code>: which button was clicked (see below)</li>
+<li><code>x</code>, <code>y</code>: coordinates of the click <strong>inside the window</strong> (top-left origin)</li>
+<li><strong><code>param</code></strong>: any Python object, passed back unchanged</li>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<p><strong>Mouse button codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left click</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Middle click</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Right click</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Scroll up</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Scroll down</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>To disable the hook:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Hit-test example (clickable button area):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">BTN_X</span><span class="p">,</span> <span class="n">BTN_Y</span><span class="p">,</span> <span class="n">BTN_W</span><span class="p">,</span> <span class="n">BTN_H</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">55</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_mouse</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">button</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">BTN_X</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">BTN_X</span> <span class="o">+</span> <span class="n">BTN_W</span> <span class="ow">and</span> <span class="n">BTN_Y</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">BTN_Y</span> <span class="o">+</span> <span class="n">BTN_H</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Button clicked!&quot;</span><span class="p">)</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="n">on_mouse</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="12-expose-hook">12. Expose Hook<a class="headerlink" href="#12-expose-hook" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_expose_hookwin_ptr-callback-param"><code>mlx_expose_hook(win_ptr, callback, param)</code><a class="headerlink" href="#mlx_expose_hookwin_ptr-callback-param" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_expose</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_expose_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="n">on_expose</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>Registers a function to call when a window <strong>needs to be redrawn</strong> (e.g., after being uncovered by another window or after alt-tab).</p>
+<ul>
+<li><strong><code>callback</code></strong>: function with signature <code>(param: any) -&gt; None</code></li>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<blockquote>
+<p><strong>Important:</strong> On modern Linux with Wayland or X11 with compositing, this event may only fire <strong>once</strong> at program start (or never). The X server often saves the window content itself. Always re-draw from your <code>loop_hook</code> using a dirty flag pattern instead of relying solely on expose.</p>
+</blockquote>
+<hr />
+<h2 id="13-loop-hook">13. Loop Hook<a class="headerlink" href="#13-loop-hook" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_loop_hookmlx_ptr-callback-param"><code>mlx_loop_hook(mlx_ptr, callback, param)</code><a class="headerlink" href="#mlx_loop_hookmlx_ptr-callback-param" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_loop</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span><span class="p">:</span>
+        <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_clear_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+        <span class="n">draw_everything</span><span class="p">()</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop_hook</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">on_loop</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>Registers a function that is called <strong>on every iteration of the event loop</strong> when no other event is pending. This is the primary place for your rendering logic.</p>
+<ul>
+<li><strong><code>callback</code></strong>: function with signature <code>(param: any) -&gt; None</code></li>
+<li><strong>Not bound to a window</strong> — bound to the <code>mlx_ptr</code> connection</li>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<p><strong>Recommended pattern — dirty flag:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># set to True whenever something changes</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_loop</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span><span class="p">:</span>
+        <span class="k">return</span>  <span class="c1"># nothing to do, skip this frame</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_clear_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+    <span class="c1"># ... draw ...</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+<p>This avoids redrawing 60+ times per second when nothing has changed.</p>
+<hr />
+<h2 id="14-generic-hook-mlx_hook">14. Generic Hook — <code>mlx_hook</code><a class="headerlink" href="#14-generic-hook-mlx_hook" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_hookwin_ptr-x_event-x_mask-callback-param"><code>mlx_hook(win_ptr, x_event, x_mask, callback, param)</code><a class="headerlink" href="#mlx_hookwin_ptr-x_event-x_mask-callback-param" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">on_close</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>The <strong>most powerful hook</strong> — lets you listen to any X11 event type, not just the three covered by the convenience hooks.</p>
+<ul>
+<li><strong><code>x_event</code></strong>: X11 event number (see table below)</li>
+<li><strong><code>x_mask</code></strong>: X11 event mask (usually <code>0</code> for modern MLX; masks are often ignored)</li>
+<li><strong><code>callback</code></strong>: function — signature depends on the event type (see below)</li>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<p><strong>X11 Event Numbers (most useful):</strong></p>
+<table>
+<thead>
+<tr>
+<th>x_event</th>
+<th>Name</th>
+<th>When it fires</th>
+<th>Callback signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2</code></td>
+<td>KeyPress</td>
+<td>Key held down (before release)</td>
+<td><code>(keycode, param)</code></td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>KeyRelease</td>
+<td>Key released (same as key_hook)</td>
+<td><code>(keycode, param)</code></td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>ButtonPress</td>
+<td>Mouse button pressed</td>
+<td><code>(button, x, y, param)</code></td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>ButtonRelease</td>
+<td>Mouse button released</td>
+<td><code>(button, x, y, param)</code></td>
+</tr>
+<tr>
+<td><code>6</code></td>
+<td>MotionNotify</td>
+<td>Mouse moved while button held</td>
+<td><code>(x, y, param)</code></td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td>EnterNotify</td>
+<td>Mouse cursor enters the window</td>
+<td><code>(param)</code></td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td>LeaveNotify</td>
+<td>Mouse cursor leaves the window</td>
+<td><code>(param)</code></td>
+</tr>
+<tr>
+<td><code>12</code></td>
+<td>Expose</td>
+<td>Window needs redraw (same as expose_hook)</td>
+<td><code>(param)</code></td>
+</tr>
+<tr>
+<td><code>33</code></td>
+<td>ClientMessage</td>
+<td>Window close button (X button) clicked</td>
+<td><code>(param)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key difference from convenience hooks:</strong>
+- <code>mlx_key_hook</code> → fires on KeyRelease (<code>3</code>)
+- <code>mlx_hook(win, 2, ...)</code> → fires on KeyPress, useful for detecting key held down</p>
+<p><strong>Mouse motion (hover) example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_motion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="c1"># x, y = current mouse position inside window</span>
+    <span class="c1"># Use this to implement hover effects</span>
+    <span class="k">if</span> <span class="n">BTN_X</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">BTN_X</span> <span class="o">+</span> <span class="n">BTN_W</span> <span class="ow">and</span> <span class="n">BTN_Y</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">BTN_Y</span> <span class="o">+</span> <span class="n">BTN_H</span><span class="p">:</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">hovering</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">hovering</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">on_motion</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> Event 6 (MotionNotify) only fires when a <strong>mouse button is held</strong> while moving. If you want mouse position tracking without a button held, poll <code>mlx_mouse_get_pos</code> in your loop hook instead.</p>
+</blockquote>
+<p><strong>Mouse enter/leave window example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_enter</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">mouse_in_window</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_leave</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">mouse_in_window</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">on_enter</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">on_leave</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="15-mouse-utilities">15. Mouse Utilities<a class="headerlink" href="#15-mouse-utilities" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_mouse_hidemlx_ptr"><code>mlx_mouse_hide(mlx_ptr)</code><a class="headerlink" href="#mlx_mouse_hidemlx_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_hide</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Hides the system mouse cursor. The cursor becomes invisible inside the window. Useful for games where you draw your own custom cursor as an image.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h3 id="mlx_mouse_showmlx_ptr"><code>mlx_mouse_show(mlx_ptr)</code><a class="headerlink" href="#mlx_mouse_showmlx_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_show</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Makes the system mouse cursor visible again after <code>mlx_mouse_hide</code>.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h3 id="mlx_mouse_movemlx_ptr-x-y"><code>mlx_mouse_move(mlx_ptr, x, y)</code><a class="headerlink" href="#mlx_mouse_movemlx_ptr-x-y" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_move</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+</code></pre></div>
+<p>Programmatically moves the mouse cursor to position <code>(x, y)</code> inside the window. Useful to snap the cursor to a specific location.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h3 id="mlx_mouse_get_posmlx_ptr-returns-tuple"><code>mlx_mouse_get_pos(mlx_ptr)</code> — returns tuple<a class="headerlink" href="#mlx_mouse_get_posmlx_ptr-returns-tuple" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ret</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_get_pos</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Returns the <strong>current mouse cursor position</strong> without waiting for a click event. Useful for hover effects when polled from the loop hook.</p>
+<ul>
+<li><strong>Returns:</strong> tuple <code>(ret, x, y)</code></li>
+<li><code>x</code>, <code>y</code>: current cursor position in the window</li>
+<li><code>ret</code>: <code>0</code> on success</li>
+</ul>
+<p><strong>Hover effect using poll (no button needed):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_loop</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_get_pos</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+    <span class="n">hovering</span> <span class="o">=</span> <span class="n">BTN_X</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">BTN_X</span> <span class="o">+</span> <span class="n">BTN_W</span> <span class="ow">and</span> <span class="n">BTN_Y</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">BTN_Y</span> <span class="o">+</span> <span class="n">BTN_H</span>
+    <span class="k">if</span> <span class="n">hovering</span> <span class="o">!=</span> <span class="n">state</span><span class="o">.</span><span class="n">last_hover</span><span class="p">:</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">last_hover</span> <span class="o">=</span> <span class="n">hovering</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span><span class="p">:</span>
+        <span class="n">redraw</span><span class="p">(</span><span class="n">hovering</span><span class="p">)</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+<hr />
+<h2 id="16-keyboard-utilities">16. Keyboard Utilities<a class="headerlink" href="#16-keyboard-utilities" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_do_key_autorepeatoffmlx_ptr"><code>mlx_do_key_autorepeatoff(mlx_ptr)</code><a class="headerlink" href="#mlx_do_key_autorepeatoffmlx_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_do_key_autorepeatoff</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Turns off keyboard auto-repeat. By default, holding a key generates repeated KeyPress events. After calling this, holding a key fires the event only <strong>once</strong> until the key is released.</p>
+<p>Useful for games where you want to detect a single press, not continuous rapid-fire.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h3 id="mlx_do_key_autorepeatonmlx_ptr"><code>mlx_do_key_autorepeaton(mlx_ptr)</code><a class="headerlink" href="#mlx_do_key_autorepeatonmlx_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_do_key_autorepeaton</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Turns keyboard auto-repeat back on (default behaviour). Multiple events per second while key is held.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h2 id="17-screen-info">17. Screen Info<a class="headerlink" href="#17-screen-info" title="Permanent link">&para;</a></h2>
+<h3 id="mlx_get_screen_sizemlx_ptr-returns-tuple"><code>mlx_get_screen_size(mlx_ptr)</code> — returns tuple<a class="headerlink" href="#mlx_get_screen_sizemlx_ptr-returns-tuple" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">ret</span><span class="p">,</span> <span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_get_screen_size</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Returns the size of the <strong>physical screen</strong> (monitor). Can be called before creating any window.</p>
+<ul>
+<li><strong>Returns:</strong> tuple <code>(ret, width, height)</code> in pixels</li>
+<li>Useful to center a window or make it fullscreen</li>
+</ul>
+<p><strong>Center a window on screen:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">ret</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">sh</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_get_screen_size</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+<span class="n">win_w</span><span class="p">,</span> <span class="n">win_h</span> <span class="o">=</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">600</span>
+<span class="c1"># MLX does not support setting window position, but you know the target offset:</span>
+<span class="c1"># offset_x = (sw - win_w) // 2</span>
+<span class="c1"># offset_y = (sh - win_h) // 2</span>
+</code></pre></div>
+<blockquote>
+<p>Note: MLX does not provide a function to set the window's position on screen. The OS places it. You can only use the screen size for logic decisions (e.g. choosing tile size to fill the screen).</p>
+</blockquote>
+<hr />
+<h2 id="18-sync-flush">18. Sync &amp; Flush<a class="headerlink" href="#18-sync-flush" title="Permanent link">&para;</a></h2>
+<p>These functions control when pixel data is actually sent to the screen. Normally you don't need them — <code>mlx_loop</code> handles flushing automatically.</p>
+<h3 id="mlx_do_syncmlx_ptr"><code>mlx_do_sync(mlx_ptr)</code><a class="headerlink" href="#mlx_do_syncmlx_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_do_sync</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Flushes all pending drawing commands to the display subsystem. Does <strong>not</strong> wait for the GPU to finish — just makes sure commands are sent, not cached on the software side.</p>
+<ul>
+<li><strong>Returns:</strong> <code>0</code> on success</li>
+</ul>
+<hr />
+<h3 id="mlx_syncmlx_ptr-cmd-img_or_win_ptr"><code>mlx_sync(mlx_ptr, cmd, img_or_win_ptr)</code><a class="headerlink" href="#mlx_syncmlx_ptr-cmd-img_or_win_ptr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_sync</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">Mlx</span><span class="o">.</span><span class="n">SYNC_IMAGE_WRITABLE</span><span class="p">,</span> <span class="n">img_ptr</span><span class="p">)</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_sync</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">Mlx</span><span class="o">.</span><span class="n">SYNC_WIN_FLUSH</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_sync</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">Mlx</span><span class="o">.</span><span class="n">SYNC_WIN_COMPLETED</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+</code></pre></div>
+<p>Fine-grained synchronisation control.</p>
+<p><strong>Commands (constants on the <code>Mlx</code> class):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mlx.SYNC_IMAGE_WRITABLE</code></td>
+<td><code>1</code></td>
+<td>Wait until image data buffer can be safely written again</td>
+</tr>
+<tr>
+<td><code>Mlx.SYNC_WIN_FLUSH</code></td>
+<td><code>2</code></td>
+<td>Send all pending requests for this window to the server</td>
+</tr>
+<tr>
+<td><code>Mlx.SYNC_WIN_COMPLETED</code></td>
+<td><code>3</code></td>
+<td>Flush AND wait for the server to confirm completion</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When to use:</strong>
+- <code>SYNC_IMAGE_WRITABLE</code>: before writing to an image that was just rendered — avoids writing while the GPU is still reading
+- <code>SYNC_WIN_FLUSH</code>: when you need to force a frame to appear immediately
+- <code>SYNC_WIN_COMPLETED</code>: when you need to guarantee the frame is fully displayed before continuing</p>
+<hr />
+<h2 id="19-color-system">19. Color System<a class="headerlink" href="#19-color-system" title="Permanent link">&para;</a></h2>
+<p>Colors in MLX are <code>unsigned int</code> values. The byte layout depends on the <strong>image format</strong> reported by <code>mlx_get_data_addr</code>, which can be either:</p>
+<ul>
+<li><strong>Format 0:</strong> <code>B8 G8 R8 A8</code> (Blue, Green, Red, Alpha)</li>
+<li><strong>Format 1:</strong> <code>A8 R8 G8 B8</code> (Alpha, Red, Green, Blue)</li>
+</ul>
+<p>For <code>mlx_pixel_put</code> and <code>mlx_string_put</code>, use the <code>0xAARRGGBB</code> notation:</p>
+<div class="highlight"><pre><span></span><code>0xFF FF FF FF
+  ↑  ↑  ↑  ↑
+  A  R  G  B
+</code></pre></div>
+<p><strong>Common colors:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">WHITE</span>   <span class="o">=</span> <span class="mh">0xFFFFFFFF</span>
+<span class="n">BLACK</span>   <span class="o">=</span> <span class="mh">0xFF000000</span>
+<span class="n">RED</span>     <span class="o">=</span> <span class="mh">0xFFFF0000</span>
+<span class="n">GREEN</span>   <span class="o">=</span> <span class="mh">0xFF00FF00</span>
+<span class="n">BLUE</span>    <span class="o">=</span> <span class="mh">0xFF0000FF</span>
+<span class="n">YELLOW</span>  <span class="o">=</span> <span class="mh">0xFFFFFF00</span>
+<span class="n">CYAN</span>    <span class="o">=</span> <span class="mh">0xFF00FFFF</span>
+<span class="n">MAGENTA</span> <span class="o">=</span> <span class="mh">0xFFFF00FF</span>
+<span class="n">GREY</span>    <span class="o">=</span> <span class="mh">0xFF888888</span>
+</code></pre></div>
+<p><strong>For image pixel buffers (raw bytes):</strong></p>
+<p>The 4 bytes are written directly in memory order. On little-endian (all modern PCs):
+<div class="highlight"><pre><span></span><code><span class="c1"># Format 0 (B G R A):</span>
+<span class="n">color_bytes</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">blue</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">alpha</span><span class="p">])</span>
+
+<span class="c1"># Format 1 (A R G B):</span>
+<span class="n">color_bytes</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">alpha</span><span class="p">,</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span><span class="p">])</span>
+</code></pre></div></p>
+<p><strong>Building a color integer from RGB components:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rgb</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">g</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="n">b</span>
+</code></pre></div>
+<p><strong>Alpha (transparency):</strong>
+- <code>255</code> (<code>0xFF</code>) = fully opaque
+- <code>0</code> = fully transparent
+- MLX composites images with transparency correctly when rendering</p>
+<hr />
+<h2 id="20-practical-recipes">20. Practical Recipes<a class="headerlink" href="#20-practical-recipes" title="Permanent link">&para;</a></h2>
+<h3 id="a-hover-effect-on-a-button">A. Hover Effect on a Button<a class="headerlink" href="#a-hover-effect-on-a-button" title="Permanent link">&para;</a></h3>
+<p>Detect mouse position each frame, switch to a highlight image when hovering:</p>
+<div class="highlight"><pre><span></span><code><span class="n">BTN_X</span><span class="p">,</span> <span class="n">BTN_Y</span><span class="p">,</span> <span class="n">BTN_W</span><span class="p">,</span> <span class="n">BTN_H</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">55</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_loop</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">mx</span><span class="p">,</span> <span class="n">my</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_get_pos</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+    <span class="n">hovering</span> <span class="o">=</span> <span class="p">(</span><span class="n">BTN_X</span> <span class="o">&lt;=</span> <span class="n">mx</span> <span class="o">&lt;=</span> <span class="n">BTN_X</span> <span class="o">+</span> <span class="n">BTN_W</span> <span class="ow">and</span>
+                <span class="n">BTN_Y</span> <span class="o">&lt;=</span> <span class="n">my</span> <span class="o">&lt;=</span> <span class="n">BTN_Y</span> <span class="o">+</span> <span class="n">BTN_H</span><span class="p">)</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img_btn_hover</span> <span class="k">if</span> <span class="n">hovering</span> <span class="k">else</span> <span class="n">img_btn_normal</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="n">img_bg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">BTN_X</span><span class="p">,</span> <span class="n">BTN_Y</span><span class="p">)</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop_hook</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">on_loop</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="b-clickable-image-button">B. Clickable Image Button<a class="headerlink" href="#b-clickable-image-button" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_mouse</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">button</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># left click</span>
+        <span class="k">if</span> <span class="n">BTN_X</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">BTN_X</span> <span class="o">+</span> <span class="n">BTN_W</span> <span class="ow">and</span> <span class="n">BTN_Y</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">BTN_Y</span> <span class="o">+</span> <span class="n">BTN_H</span><span class="p">:</span>
+            <span class="n">do_action</span><span class="p">()</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="n">on_mouse</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="c-custom-mouse-cursor">C. Custom Mouse Cursor<a class="headerlink" href="#c-custom-mouse-cursor" title="Permanent link">&para;</a></h3>
+<p>Hide the system cursor and draw your own image at the mouse position:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_hide</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_loop</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">mx</span><span class="p">,</span> <span class="n">my</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_get_pos</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_clear_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="n">img_bg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="n">img_cursor</span><span class="p">,</span> <span class="n">mx</span> <span class="o">-</span> <span class="mi">8</span><span class="p">,</span> <span class="n">my</span> <span class="o">-</span> <span class="mi">8</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="d-drawing-to-an-image-buffer-fast">D. Drawing to an Image Buffer (Fast)<a class="headerlink" href="#d-drawing-to-an-image-buffer-fast" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">img_ptr</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_new_image</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">bpp</span><span class="p">,</span> <span class="n">sl</span><span class="p">,</span> <span class="n">fmt</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_get_data_addr</span><span class="p">(</span><span class="n">img_ptr</span><span class="p">)</span>
+
+<span class="c1"># Draw a red diagonal line</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">):</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">sl</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">])</span>  <span class="c1"># BGRA red</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="n">img_ptr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="e-multiple-windows">E. Multiple Windows<a class="headerlink" href="#e-multiple-windows" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">win1</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_new_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="s2">&quot;Window 1&quot;</span><span class="p">)</span>
+<span class="n">win2</span> <span class="o">=</span> <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_new_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="s2">&quot;Window 2&quot;</span><span class="p">)</span>
+
+<span class="c1"># Each window gets its own hooks</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_key_hook</span><span class="p">(</span><span class="n">win1</span><span class="p">,</span> <span class="n">on_key_win1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_key_hook</span><span class="p">(</span><span class="n">win2</span><span class="p">,</span> <span class="n">on_key_win2</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_hook</span><span class="p">(</span><span class="n">win1</span><span class="p">,</span> <span class="n">on_mouse_win1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_mouse_hook</span><span class="p">(</span><span class="n">win2</span><span class="p">,</span> <span class="n">on_mouse_win2</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Close just one window</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_close_win2</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_destroy_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win2</span><span class="p">)</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">win2</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">on_close_win2</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="f-detecting-key-held-down-keypress-not-keyrelease">F. Detecting Key Held Down (KeyPress, not KeyRelease)<a class="headerlink" href="#f-detecting-key-held-down-keypress-not-keyrelease" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># KeyPress fires immediately and repeatedly while held</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_keypress</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">65361</span><span class="p">:</span>  <span class="c1"># left arrow</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">player_x</span> <span class="o">-=</span> <span class="mi">5</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_hook</span><span class="p">(</span><span class="n">win_ptr</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">on_keypress</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># event 2 = KeyPress</span>
+</code></pre></div>
+<h3 id="g-scene-state-machine">G. Scene / State Machine<a class="headerlink" href="#g-scene-state-machine" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Switch between &quot;menu&quot; and &quot;game&quot; without opening a new window</span>
+<span class="n">state</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="s2">&quot;menu&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_loop</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_clear_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">scene</span> <span class="o">==</span> <span class="s2">&quot;menu&quot;</span><span class="p">:</span>
+        <span class="n">draw_menu</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">state</span><span class="o">.</span><span class="n">scene</span> <span class="o">==</span> <span class="s2">&quot;game&quot;</span><span class="p">:</span>
+        <span class="n">draw_game</span><span class="p">()</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">scene</span> <span class="o">==</span> <span class="s2">&quot;menu&quot;</span> <span class="ow">and</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">49</span><span class="p">:</span>  <span class="c1"># &#39;1&#39;</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="s2">&quot;game&quot;</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">needs_redraw</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<h3 id="h-animation-frame-counter">H. Animation / Frame Counter<a class="headerlink" href="#h-animation-frame-counter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">state</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_loop</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">frame</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># Animate every 10 frames</span>
+    <span class="n">frame_img</span> <span class="o">=</span> <span class="n">anim_frames</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">frame</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">anim_frames</span><span class="p">)]</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_put_image_to_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">,</span> <span class="n">frame_img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="i-clean-program-exit">I. Clean Program Exit<a class="headerlink" href="#i-clean-program-exit" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">shutdown</span><span class="p">():</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_destroy_image</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">img_ptr</span><span class="p">)</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_destroy_window</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">,</span> <span class="n">win_ptr</span><span class="p">)</span>
+    <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_release</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="mi">65307</span><span class="p">:</span>  <span class="c1"># ESC</span>
+        <span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop_exit</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+
+<span class="c1"># After mlx_loop returns:</span>
+<span class="n">mlx</span><span class="o">.</span><span class="n">mlx_loop</span><span class="p">(</span><span class="n">mlx_ptr</span><span class="p">)</span>
+<span class="n">shutdown</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h2 id="21-limitations-known-issues">21. Limitations &amp; Known Issues<a class="headerlink" href="#21-limitations-known-issues" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Limitation</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No window positioning</td>
+<td>Cannot set where on screen the window appears</td>
+</tr>
+<tr>
+<td>Font is fixed</td>
+<td><code>mlx_string_put</code> uses one built-in bitmap font, cannot change size or face</td>
+</tr>
+<tr>
+<td>PNG loader unreliable</td>
+<td>Some PNG files fail to load; convert to XPM with ImageMagick for production</td>
+</tr>
+<tr>
+<td>No Ctrl+C in loop</td>
+<td>Python cannot catch SIGINT inside <code>mlx_loop</code>. Use <code>Ctrl+\</code> or <code>os._exit(0)</code></td>
+</tr>
+<tr>
+<td>Expose event may not fire</td>
+<td>On modern composited desktops the expose hook is unreliable; use <code>loop_hook</code> + dirty flag</td>
+</tr>
+<tr>
+<td>MotionNotify requires button held</td>
+<td>Event 6 only fires during click-drag; use <code>mlx_mouse_get_pos</code> polling for hover</td>
+</tr>
+<tr>
+<td>Alpha in <code>mlx_string_put</code></td>
+<td>Alpha channel of the color is always forced to 255 (opaque) — you cannot make text semi-transparent</td>
+</tr>
+<tr>
+<td><code>mlx_pixel_put</code> is slow</td>
+<td>Each call is a separate GPU command; use image buffers for bulk drawing</td>
+</tr>
+<tr>
+<td>No text input</td>
+<td>There is no text field or input widget; you must build your own using key hooks</td>
+</tr>
+<tr>
+<td>No built-in UI</td>
+<td>No buttons, checkboxes, sliders — all must be built using images and hit-testing</td>
+</tr>
+<tr>
+<td>Image format endian</td>
+<td><code>mlx_get_data_addr</code> format can be <code>0</code> or <code>1</code> — always check before writing pixel bytes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="22-quick-reference-card">22. Quick Reference Card<a class="headerlink" href="#22-quick-reference-card" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>INIT
+  mlx_ptr = mlx.mlx_init()
+  mlx.mlx_release(mlx_ptr)
+
+WINDOW
+  win_ptr = mlx.mlx_new_window(mlx_ptr, w, h, &quot;title&quot;)
+  mlx.mlx_clear_window(mlx_ptr, win_ptr)       # fill black
+  mlx.mlx_destroy_window(mlx_ptr, win_ptr)
+
+DRAW DIRECT (slow)
+  mlx.mlx_pixel_put(mlx_ptr, win_ptr, x, y, color)
+  mlx.mlx_string_put(mlx_ptr, win_ptr, x, y, color, &quot;text&quot;)
+
+IMAGES (fast)
+  img = mlx.mlx_new_image(mlx_ptr, w, h)
+  data, bpp, sl, fmt = mlx.mlx_get_data_addr(img)
+  mlx.mlx_put_image_to_window(mlx_ptr, win_ptr, img, x, y)
+  mlx.mlx_destroy_image(mlx_ptr, img)
+
+LOAD FILES
+  img, w, h = mlx.mlx_xpm_file_to_image(mlx_ptr, &quot;file.xpm&quot;)  # recommended
+  img, w, h = mlx.mlx_png_file_to_image(mlx_ptr, &quot;file.png&quot;)  # unreliable
+
+LOOP &amp; EVENTS
+  mlx.mlx_loop(mlx_ptr)                         # starts loop, never returns
+  mlx.mlx_loop_exit(mlx_ptr)                    # exit from inside a hook
+  mlx.mlx_key_hook(win_ptr, fn(key,p), param)   # key released
+  mlx.mlx_mouse_hook(win_ptr, fn(btn,x,y,p), p) # mouse click
+  mlx.mlx_expose_hook(win_ptr, fn(p), param)     # window needs redraw
+  mlx.mlx_loop_hook(mlx_ptr, fn(p), param)       # every frame
+
+GENERIC HOOK (all events)
+  mlx.mlx_hook(win_ptr, x_event, x_mask, fn, param)
+  # x_event: 2=KeyPress  3=KeyRelease  4=BtnPress  5=BtnRelease
+  #           6=Motion    7=Enter       8=Leave     33=WindowClose
+
+MOUSE UTILS
+  mlx.mlx_mouse_hide(mlx_ptr)
+  mlx.mlx_mouse_show(mlx_ptr)
+  mlx.mlx_mouse_move(mlx_ptr, x, y)
+  ret, x, y = mlx.mlx_mouse_get_pos(mlx_ptr)
+
+KEYBOARD UTILS
+  mlx.mlx_do_key_autorepeatoff(mlx_ptr)
+  mlx.mlx_do_key_autorepeaton(mlx_ptr)
+
+SCREEN
+  ret, w, h = mlx.mlx_get_screen_size(mlx_ptr)
+
+SYNC
+  mlx.mlx_do_sync(mlx_ptr)
+  mlx.mlx_sync(mlx_ptr, Mlx.SYNC_IMAGE_WRITABLE, img)
+  mlx.mlx_sync(mlx_ptr, Mlx.SYNC_WIN_FLUSH, win)
+  mlx.mlx_sync(mlx_ptr, Mlx.SYNC_WIN_COMPLETED, win)
+
+COLORS  0xAARRGGBB
+  WHITE=0xFFFFFFFF  BLACK=0xFF000000  RED=0xFFFF0000
+  GREEN=0xFF00FF00  BLUE=0xFF0000FF   YELLOW=0xFFFFFF00
+
+KEY CODES (Linux)
+  ESC=65307  Enter=65293  Space=32
+  Up=65362   Down=65364   Left=65361  Right=65363
+  &#39;a&#39;=97     &#39;z&#39;=122      &#39;0&#39;=48      &#39;1&#39;=49
+</code></pre></div>
+<hr />
+<p><em>Documentation written from source: <code>mlx.py</code>, <code>mlx.h</code>, man pages, C source files, and test examples — mlx_CLXV v2.2</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
