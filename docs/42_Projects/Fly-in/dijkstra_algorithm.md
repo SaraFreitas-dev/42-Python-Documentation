@@ -3,25 +3,6 @@
 
 ---
 
-# Table of Contents
-
-1. What is Dijkstra?
-2. Weighted Graphs
-3. Cheapest Path vs Shortest Path
-4. Priority Queue (`heapq`)
-5. Cost Tracking
-6. Parent Tracking
-7. Visited Nodes
-8. Dijkstra Logic
-9. Path Reconstruction
-10. Visual Example
-11. Fly-in Connection
-12. BFS vs Dijkstra
-13. Complexity
-14. Mental Model
-
----
-
 # 1️⃣ What is Dijkstra?
 
 Dijkstra is a graph algorithm used to:
@@ -31,9 +12,15 @@ Dijkstra is a graph algorithm used to:
 - optimize movement cost
 - solve weighted graph problems
 
+
+<p align="center">
+  <img src="Dijkstra.png" width="500">
+</p>
+
+
 ---
 
-# Dijkstra focuses on:
+# Focuses on:
 
 ```text
 lowest total cost

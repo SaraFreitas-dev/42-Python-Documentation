@@ -4,8 +4,6 @@
 
 Every map is composed of connected zones.
 
-![Fly-in Example Map](../assets/img/fly-in_example_map.png)
-
 Each zone belongs to one of the following types:
 
 ---
@@ -25,7 +23,7 @@ Each zone belongs to one of the following types:
 |---|---|
 | Default capacity | Every zone supports `1 drone` unless specified otherwise |
 | Custom capacity | Zones may define `max_drones=N` |
-| Capacity restriction | A drone cannot enter a full zone |
+| Capacity restriction | A drone cannot enter a full zone |assets/simulation_example.gif
 | Simultaneous occupancy | Allowed only if capacity permits |
 
 Example:
