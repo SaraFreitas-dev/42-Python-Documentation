@@ -3,7 +3,7 @@
 # 🚁 Fly-in
 
 <p align="center">
-  <img src="assets/simulation_example.gif" width="750">
+  <img src="simulation_example.gif" width="750">
 </p>
 
 <p align="center">
@@ -106,7 +106,7 @@ Not only that, you will also be able to see a *gif animation* on 'assets/gif', s
 The simulator operates on custom map files describing hubs and their connections.
 
 <p align="center">
-  <img src="assets/fly-in_example_map.png" width="750">
+  <img src="fly-in_example_map.png" width="750">
 </p>
 
 Each map can define:
@@ -172,7 +172,7 @@ One of the main goals of the project was to make the simulation easy to understa
 The project provides two independent visualization systems.
 
 <p align="center">
-  <img src="assets/frame_example.png" width="750">
+  <img src="frame_example.png" width="750">
 </p>
 
 ## Terminal Visualizer
