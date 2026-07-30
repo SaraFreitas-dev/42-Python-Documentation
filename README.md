@@ -7,7 +7,7 @@
 > Beginner-friendly Python documentation and notes created during the 42 School Common Core journey.
 
 🌐 Interactive Documentation Website:  
-https://sarafreitas-dev.github.io/42-Python-Documentation/
+[https://sarafreitas-dev.github.io/42-Python-Documentation/](https://sarafreitas-dev.github.io/42-School-Python-Documentation/)
 
 This repository contains practical guides, examples, workflows, and explanations about important Python concepts frequently used in modern development and 42 projects.
 
