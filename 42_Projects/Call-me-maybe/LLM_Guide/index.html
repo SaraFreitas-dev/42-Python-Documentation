@@ -1,0 +1,4528 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Function_Calling/">
+      
+      
+        <link rel="next" href="../LLM_SDK_Hugging_face/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>🤖 LLMs & Function Calling — How Call Me Maybe Works - 42 School Python Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#llms-function-calling-how-call-me-maybe-works" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="42 School Python Documentation" class="md-header__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            42 School Python Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🤖 LLMs &amp; Function Calling — How Call Me Maybe Works
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="42 School Python Documentation" class="md-nav__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    42 School Python Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 42 School Python Documentation &amp; Project Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    42 Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    42 Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A maze ing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    A maze ing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/export-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A-Maze-ing Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/maze-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maze Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/mlx-lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/render/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Render System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Born2BeRoot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Born2BeRoot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/evaluation_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Evaluation Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐧 Born2beroot Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/linux_fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐧 Linux Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔐 Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/services_and_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Services and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/storage_and_lvm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💾 Storage and LVM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/users_and_permissions_extended/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    👤 Users and Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/virtualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Virtualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Call me maybe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Call me maybe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Constrained_Decoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔒 Constrained Decoding — Guaranteeing Valid JSON Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Function_Calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📞 Function Calling — From Natural Language to Structured JSON
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 LLMs &amp; Function Calling — How Call Me Maybe Works
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 LLMs &amp; Function Calling — How Call Me Maybe Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-an-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is an LLM?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is an LLM?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-well-known-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏛️ Some well-known LLMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-text-generation-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Text Generation Actually Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Text Generation Actually Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-generation-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The generation loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tokens-the-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens — The Building Blocks 🧩
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tokens — The Building Blocks 🧩">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-not-just-use-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why not just use words?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The vocabulary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokens-have-leading-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens have leading spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logits-the-models-raw-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logits — The Model's Raw Output 📊
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logits — The Model&#39;s Raw Output 📊">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-key-insight-for-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The key insight for this project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-function-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Function Calling? 📞
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Function Calling? 📞">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-is-this-powerful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why is this powerful?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-small-models-are-unreliable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: Small Models Are Unreliable ⚠️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-solution-constrained-decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution: Constrained Decoding 🔒
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Solution: Constrained Decoding 🔒">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-core-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The core idea
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-concrete-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A concrete walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-model-used-qwen3-06b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Model Used: Qwen3-0.6B 🏎️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Model Used: Qwen3-0.6B 🏎️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-a-small-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why a small model?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-model-can-and-cannot-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the model can and cannot do
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-llm_sdk-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The llm_sdk Package 📦
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The llm_sdk Package 📦">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-full-pipeline-in-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Full Pipeline in This Project 🔄
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Full Pipeline in This Project 🔄">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example end-to-end
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glossary 📖
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_SDK_Hugging_face/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤗 LLM SDK &amp; Hugging Face — What's Running Under the Hood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pydantic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Pydantic — Data Validation for Call Me Maybe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 Schemas — The Blueprint That Connects Everything
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokenization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Tokenization — How Text Becomes Numbers (and Back)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UV_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚡ UV — Modern Python Package &amp; Environment Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UV_Makefile_Example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 UV &amp; Python Makefile Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../argparse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ CLI &amp; Argument Parsing — How the Program Accepts Input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codexion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Codexion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Study Docs — Codexion (42 Porto)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/01-dining-philosophers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍽️ Dining Philosophers &amp; Deadlock Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/02-pthreads-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧵 POSIX Threads: Creation, Joining &amp; Synchronization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/03-scheduling-fifo-edf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⏱️ Scheduling Policies: FIFO vs EDF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/04-heap-priority-queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🌳 Binary Heap as a Priority Queue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/05-timing-precision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⏲️ Timing Precision &amp; the 10ms Burnout Window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/06-concurrency-debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 Debugging Concurrency: Valgrind, Helgrind, ThreadSanitizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/07-Make-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 Make tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/Drone_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛩️ Fly-in — Drone System Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/Intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/Parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📄 Parsing — Input File Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Fly-in Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/pillow_docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 Pillow Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/simulator_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulator System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms and data structures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithms and data structures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/bfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Breadth-First Search (BFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/dfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Depth-First Search (DFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Git/git_workflow_for_42/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Workflow for 42 School
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Libraries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Libraries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX 42lib
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MLX 42lib
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Libraries/MLX_42lib/MLX_DOCUMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MinilibX (MLX) — Complete Python Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pillow
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Libraries/Pillow/pillow_docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 Pillow Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX 42lib
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MLX 42lib
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLX_42lib/MLX_DOCUMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MinilibX (MLX) — Complete Python Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Makefile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Makefile/Makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Makefile/python_makefile_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Python Makefile Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python core
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python core
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data validation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data validation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Data_validation/json_and_data_validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON and Data Validation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Data_validation/pydantic_concepts_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic v2 - Core Concepts Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dunder methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Dunder_methods/dunder_methods_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✨ Python Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Dunder_methods/python_introspection_and_dunder_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Introspection &amp; Useful Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment and packages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment and packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Environment_and_packages/packages_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Python Packages Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Environment_and_packages/virtual_environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Virtual Environments Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error handling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Error handling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Error_handling/exceptions_try_except/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚨 Python Exceptions &amp; Try/Except Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Error_handling/traceback_debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 Python Traceback &amp; Debugging Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional programming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Functional programming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/callable_and_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Callable and Functions in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/closures_and_nonlocal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Closures and nonlocal in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/decorators_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decorators Guide in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/lambda_functions_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Python Lambda Functions Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OOP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OOP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/OOP/class_methods_and_attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Class Methods &amp; Attributes Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/OOP/oop_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object-Oriented Programming (OOP) Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flake8 and mypy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flake8 and mypy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flake8_and_mypy/mypy_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mypy and flake8 Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flake8_and_mypy/typing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Typing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-an-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is an LLM?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is an LLM?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-well-known-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏛️ Some well-known LLMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-text-generation-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Text Generation Actually Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Text Generation Actually Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-generation-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The generation loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tokens-the-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens — The Building Blocks 🧩
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tokens — The Building Blocks 🧩">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-not-just-use-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why not just use words?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The vocabulary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokens-have-leading-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tokens have leading spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logits-the-models-raw-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logits — The Model's Raw Output 📊
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logits — The Model&#39;s Raw Output 📊">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-key-insight-for-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The key insight for this project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-function-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Function Calling? 📞
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Function Calling? 📞">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-is-this-powerful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why is this powerful?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-small-models-are-unreliable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: Small Models Are Unreliable ⚠️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-solution-constrained-decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution: Constrained Decoding 🔒
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Solution: Constrained Decoding 🔒">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-core-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The core idea
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-concrete-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A concrete walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-model-used-qwen3-06b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Model Used: Qwen3-0.6B 🏎️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Model Used: Qwen3-0.6B 🏎️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-a-small-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why a small model?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-model-can-and-cannot-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the model can and cannot do
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-llm_sdk-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The llm_sdk Package 📦
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The llm_sdk Package 📦">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-full-pipeline-in-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Full Pipeline in This Project 🔄
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Full Pipeline in This Project 🔄">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example end-to-end
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glossary 📖
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="llms-function-calling-how-call-me-maybe-works">🤖 LLMs &amp; Function Calling — How Call Me Maybe Works<a class="headerlink" href="#llms-function-calling-how-call-me-maybe-works" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Why this doc exists:</strong> Call Me Maybe is not a chatbot. It's a <strong>function calling system</strong> — a pipeline that reads a natural language prompt and outputs a structured JSON function call. This guide explains what LLMs are, how they generate text token by token, and why this project's approach (constrained decoding) exists and matters.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#what-is-an-llm">What is an LLM?</a></li>
+<li><a href="#how-text-generation-actually-works">How Text Generation Actually Works</a></li>
+<li><a href="#tokens--the-building-blocks">Tokens — The Building Blocks</a></li>
+<li><a href="#logits--the-models-raw-output">Logits — The Model's Raw Output</a></li>
+<li><a href="#what-is-function-calling">What is Function Calling?</a></li>
+<li><a href="#the-problem-small-models-are-unreliable">The Problem: Small Models Are Unreliable</a></li>
+<li><a href="#the-solution-constrained-decoding">The Solution: Constrained Decoding</a></li>
+<li><a href="#the-model-used-qwen3-06b">The Model Used: Qwen3-0.6B</a></li>
+<li><a href="#the-llm_sdk-package">The llm_sdk Package</a></li>
+<li><a href="#the-full-pipeline-in-this-project">The Full Pipeline in This Project</a></li>
+<li><a href="#glossary">Glossary</a></li>
+</ol>
+<hr />
+<h2 id="what-is-an-llm">What is an LLM?<a class="headerlink" href="#what-is-an-llm" title="Permanent link">&para;</a></h2>
+<p>A <strong>Large Language Model</strong> is an AI trained on enormous amounts of text. During training, it adjusted billions of internal parameters (weights) to learn one core skill: <strong>predicting the most likely next token given everything that came before.</strong></p>
+<p>That's the whole trick. From that single ability, you get something that can answer questions, write code, summarise text — and in this project, decide which function to call and with what arguments.</p>
+<h3 id="some-well-known-llms">🏛️ Some well-known LLMs<a class="headerlink" href="#some-well-known-llms" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Creator</th>
+<th>Parameters</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4o</td>
+<td>OpenAI</td>
+<td>~1 trillion (est.)</td>
+<td>Powers ChatGPT</td>
+</tr>
+<tr>
+<td>Claude 3.5 Sonnet</td>
+<td>Anthropic</td>
+<td>Unknown</td>
+<td>Strong reasoning</td>
+</tr>
+<tr>
+<td>Llama 3.3</td>
+<td>Meta</td>
+<td>70B</td>
+<td>Open source</td>
+</tr>
+<tr>
+<td><strong>Qwen3-0.6B</strong></td>
+<td><strong>Alibaba</strong></td>
+<td><strong>600 million</strong></td>
+<td><strong>Used in this project</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>In this project</strong> we use <strong>Qwen/Qwen3-0.6B</strong> — a small, local model that runs entirely on your machine via the provided <code>llm_sdk</code> package. No API calls, no internet required.</p>
+</blockquote>
+<hr />
+<h2 id="how-text-generation-actually-works">How Text Generation Actually Works<a class="headerlink" href="#how-text-generation-actually-works" title="Permanent link">&para;</a></h2>
+<p>Understanding this is essential for this project. The generation loop is what you'll be hooking into with constrained decoding.</p>
+<h3 id="the-generation-loop">The generation loop<a class="headerlink" href="#the-generation-loop" title="Permanent link">&para;</a></h3>
+<p>Every time an LLM produces text, it runs this cycle repeatedly:</p>
+<div class="highlight"><pre><span></span><code>1. Take all tokens so far (prompt + already generated tokens)
+2. Feed them through the neural network
+3. Get back a probability score for every possible next token (logits)
+4. Pick the next token
+5. Append it to the sequence
+6. Repeat from step 1 until done
+</code></pre></div>
+<p>Here's what that looks like for a simple input:</p>
+<div class="highlight"><pre><span></span><code>Input:  "What is the sum of 2 and 3?"
+
+Step 1: model sees → ["What", " is", " the", " sum", " of", " 2", " and", " 3", "?"]
+Step 3: logits → { "{": 0.72, "The": 0.04, "5": 0.19, ... }   ← "{" wins
+Step 5: sequence → ["What", ..., "?", "{"]
+
+Step 1: model sees → ["What", ..., "?", "{"]
+Step 3: logits → { '"': 0.91, " ": 0.03, "f": 0.02, ... }     ← '"' wins
+Step 5: sequence → ["What", ..., "?", "{", '"']
+
+... and so on until the full JSON is generated
+</code></pre></div>
+<p>Each token is chosen one at a time. The model has no concept of "the whole output" — it only ever decides: <em>given everything so far, what comes next?</em></p>
+<hr />
+<h2 id="tokens-the-building-blocks">Tokens — The Building Blocks 🧩<a class="headerlink" href="#tokens-the-building-blocks" title="Permanent link">&para;</a></h2>
+<p>LLMs don't process characters or words — they process <strong>tokens</strong>. A token is a chunk of text, typically 3–4 characters on average, defined by the model's <strong>tokenizer</strong>.</p>
+<h3 id="why-not-just-use-words">Why not just use words?<a class="headerlink" href="#why-not-just-use-words" title="Permanent link">&para;</a></h3>
+<p>Tokenizers use algorithms like <strong>BPE (Byte Pair Encoding)</strong> that split text into statistically efficient chunks. Common words become single tokens; rare words get split.</p>
+<div class="highlight"><pre><span></span><code>"hello"          → ["hello"]                   = 1 token
+"pyproject"      → ["py", "project"]           = 2 tokens
+"fn_add_numbers" → ["fn", "_add", "_numbers"]  = 3 tokens
+"Qwen"           → ["Qwen"]                    = 1 token
+</code></pre></div>
+<h3 id="the-vocabulary">The vocabulary<a class="headerlink" href="#the-vocabulary" title="Permanent link">&para;</a></h3>
+<p>Every model has a fixed <strong>vocabulary</strong> — a list of every possible token and its integer ID. Qwen3-0.6B's vocabulary contains ~150,000 entries. At each generation step, the model assigns a score to all ~150,000 tokens.</p>
+<blockquote>
+<p><strong>This matters for constrained decoding:</strong> the vocabulary file (<code>get_path_to_vocab_file()</code>) is how you know which token IDs correspond to characters like <code>{</code>, <code>"</code>, <code>1</code>, <code>2</code>, <code>.</code>, etc. — and therefore which tokens are valid JSON at each point in the generation.</p>
+</blockquote>
+<h3 id="tokens-have-leading-spaces">Tokens have leading spaces<a class="headerlink" href="#tokens-have-leading-spaces" title="Permanent link">&para;</a></h3>
+<p>Tokenizers preserve spacing. The token for <code>the</code> (with a leading space) is different from <code>the</code> (without). When you inspect the vocabulary file, you'll see tokens like <code>Ġthe</code>, <code>Ġsum</code>, <code>Ġof</code> — where <code>Ġ</code> represents a preceding space.</p>
+<div class="highlight"><pre><span></span><code>"the sum"  →  ["the", "Ġsum"]    ← "Ġsum" includes the space before it
+</code></pre></div>
+<p>This matters when matching tokens to partial JSON strings during constrained decoding.</p>
+<hr />
+<h2 id="logits-the-models-raw-output">Logits — The Model's Raw Output 📊<a class="headerlink" href="#logits-the-models-raw-output" title="Permanent link">&para;</a></h2>
+<p>After processing the input, the model outputs <strong>logits</strong> — one raw score per vocabulary token. These are not probabilities yet; they're raw numbers that can be positive or negative.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Simplified example: vocabulary of 5 tokens</span>
+<span class="n">logits</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"{"</span><span class="p">:</span>    <span class="mf">2.8</span><span class="p">,</span>    <span class="c1"># high → likely</span>
+    <span class="s2">"The"</span><span class="p">:</span>  <span class="mf">0.1</span><span class="p">,</span>    <span class="c1"># low → unlikely</span>
+    <span class="s2">"5"</span><span class="p">:</span>    <span class="mf">1.2</span><span class="p">,</span>    <span class="c1"># medium</span>
+    <span class="s2">"null"</span><span class="p">:</span> <span class="o">-</span><span class="mf">3.4</span><span class="p">,</span>   <span class="c1"># very low → very unlikely</span>
+    <span class="s2">"fn"</span><span class="p">:</span>   <span class="mf">0.6</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>To convert logits to probabilities, you apply <strong>softmax</strong>:</p>
+<div class="highlight"><pre><span></span><code>probability(token) = exp(logit) / sum(exp(all logits))
+</code></pre></div>
+<p>The token with the highest logit wins (greedy decoding), or you can sample proportionally.</p>
+<h3 id="the-key-insight-for-this-project">The key insight for this project<a class="headerlink" href="#the-key-insight-for-this-project" title="Permanent link">&para;</a></h3>
+<p><strong>You can modify logits before the token is selected.</strong> This is constrained decoding. If you set a token's logit to <code>-inf</code> (negative infinity), it effectively has zero probability of being chosen:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="n">logits</span><span class="p">[</span><span class="s2">" The"</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span>   <span class="c1"># this token can never be chosen</span>
+<span class="n">logits</span><span class="p">[</span><span class="s2">"5"</span><span class="p">]</span>    <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span>   <span class="c1"># this token can never be chosen</span>
+<span class="c1"># now only valid JSON tokens remain in the distribution</span>
+</code></pre></div>
+<hr />
+<h2 id="what-is-function-calling">What is Function Calling? 📞<a class="headerlink" href="#what-is-function-calling" title="Permanent link">&para;</a></h2>
+<p>LLMs are great at generating natural language — but programs need structured, machine-readable output. <strong>Function calling</strong> bridges this gap.</p>
+<p>The idea: given a natural language request and a set of available functions, the LLM determines which function to call and with what arguments — outputting structured JSON instead of a prose answer.</p>
+<div class="highlight"><pre><span></span><code>User: "What is the sum of 40 and 2?"
+
+❌ Traditional LLM output:
+   "The sum of 40 and 2 is 42."          ← useful for humans, useless for code
+
+✅ Function calling output:
+   {
+     "name": "fn_add_numbers",
+     "parameters": {"a": 40.0, "b": 2.0}
+   }                                       ← your code can actually use this
+</code></pre></div>
+<p>Another example:</p>
+<div class="highlight"><pre><span></span><code>User: "Greet John"
+
+Output:
+{
+  "name": "fn_greet",
+  "parameters": {"name": "John"}
+}
+</code></pre></div>
+<p>The model doesn't execute the function. It just figures out <em>which</em> function to call and <em>what arguments</em> to pass. Your Python code does the actual execution.</p>
+<h3 id="why-is-this-powerful">Why is this powerful?<a class="headerlink" href="#why-is-this-powerful" title="Permanent link">&para;</a></h3>
+<p>Function calling lets LLMs interact with real systems — call APIs, query databases, trigger actions — by producing output that software can parse and act on. It's how modern AI assistants ("check my calendar", "send this email", "set a reminder") actually work under the hood.</p>
+<hr />
+<h2 id="the-problem-small-models-are-unreliable">The Problem: Small Models Are Unreliable ⚠️<a class="headerlink" href="#the-problem-small-models-are-unreliable" title="Permanent link">&para;</a></h2>
+<p>Here's the honest truth about small models when asked to produce JSON:</p>
+<div class="highlight"><pre><span></span><code>Qwen3-0.6B prompted to output JSON: succeeds ~30% of the time
+GPT-4o prompted to output JSON:     succeeds ~95% of the time
+</code></pre></div>
+<p>Small models (like the 0.6B you're using) frequently:
+- Forget to close brackets
+- Add prose explanations after the JSON
+- Use wrong types (<code>"42"</code> instead of <code>42.0</code>)
+- Hallucinate argument names that don't exist in the schema
+- Output partial JSON before giving up</p>
+<div class="highlight"><pre><span></span><code># What you asked for:
+{"name": "fn_add_numbers", "parameters": {"a": 40.0, "b": 2.0}}
+
+# What a small model might actually produce:
+{"name": "fn_add_numbers", "parameters": {"a": "40", "b": "2"}}
+# Wrong types! ↑                                      ↑
+
+# Or even:
+{"name": "fn_add_numbers", "parameters": {"a": 40, "b": 2}
+# Missing closing brace! ↑
+
+# Or:
+The function to call is fn_add_numbers with arguments a=40 and b=2.
+# Not JSON at all!
+</code></pre></div>
+<p><strong>The subject is explicit about this:</strong> your solution must NOT rely on prompting the model and hoping it produces correct JSON. That's not reliable, and it's not the skill being tested.</p>
+<hr />
+<h2 id="the-solution-constrained-decoding">The Solution: Constrained Decoding 🔒<a class="headerlink" href="#the-solution-constrained-decoding" title="Permanent link">&para;</a></h2>
+<p>Constrained decoding solves the reliability problem at the <strong>generation level</strong> — not at the prompting level. Instead of hoping the model produces valid JSON, you <strong>guarantee it</strong> by controlling which tokens it's allowed to choose at each step.</p>
+<h3 id="the-core-idea">The core idea<a class="headerlink" href="#the-core-idea" title="Permanent link">&para;</a></h3>
+<p>At every token generation step:</p>
+<ol>
+<li>Get logits for all ~150,000 tokens from the model</li>
+<li>Determine which tokens would produce <strong>valid JSON at this position</strong> given the schema</li>
+<li>Set all invalid token logits to <code>-inf</code></li>
+<li>Sample from the remaining valid tokens</li>
+</ol>
+<p>The model still drives the content (which function name, which argument values), but it physically cannot produce invalid JSON.</p>
+<h3 id="a-concrete-walkthrough">A concrete walkthrough<a class="headerlink" href="#a-concrete-walkthrough" title="Permanent link">&para;</a></h3>
+<p>Say you're generating the output for <code>"Greet John"</code>. The schema requires:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">}}</span>
+</code></pre></div>
+<p><strong>Step 1: Must start with <code>{</code></strong></p>
+<div class="highlight"><pre><span></span><code>Valid tokens:   ["{"]
+Invalid tokens: everything else → set to -inf
+Chosen token:   "{"
+</code></pre></div>
+<p><strong>Step 2: After <code>{</code>, must have <code>"</code></strong></p>
+<div class="highlight"><pre><span></span><code>Current partial: "{"
+Valid tokens:    ['"']
+Chosen token:   '"'
+</code></pre></div>
+<p><strong>Step 3: The key field must be <code>name</code></strong></p>
+<div class="highlight"><pre><span></span><code>Current partial: '{"'
+Valid tokens:   ["n"]   ← only 'n' continues a valid field name here
+Chosen token:   "n"
+</code></pre></div>
+<p><strong>Step 4: Filling in the function name</strong></p>
+<p>Once you're inside the <code>"name"</code> value, only tokens that continue valid function names are allowed:</p>
+<div class="highlight"><pre><span></span><code>Current partial: '{"name": "'
+Valid tokens: ["fn_add_numbers", "fn_greet", "fn_reverse_string", ...]
+              ← restricted to actual functions from functions_definition.json
+</code></pre></div>
+<p>The model assigns higher probability to <code>fn_greet</code> given the prompt "Greet John" — and since only valid function names are available, it correctly picks <code>fn_greet</code>.</p>
+<p><strong>Step 5: For numeric arguments, only numbers allowed</strong></p>
+<p>If the schema says a parameter is of type <code>number</code>:</p>
+<div class="highlight"><pre><span></span><code>Current partial: '{"name": "fn_add_numbers", "parameters": {"a": '
+Valid tokens:    ["0","1","2","3","4","5","6","7","8","9","-"]
+                 ← strings, booleans, null are all set to -inf
+</code></pre></div>
+<h3 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Final output: {"name": "fn_greet", "parameters": {"name": "John"}}
+</code></pre></div>
+<p>100% valid JSON. 100% schema-compliant. Every time.</p>
+<hr />
+<h2 id="the-model-used-qwen3-06b">The Model Used: Qwen3-0.6B 🏎️<a class="headerlink" href="#the-model-used-qwen3-06b" title="Permanent link">&para;</a></h2>
+<p><strong>Qwen3-0.6B</strong> is a small open-source language model from Alibaba. The <code>0.6B</code> means it has approximately <strong>600 million parameters</strong> — tiny by modern standards (GPT-4 is estimated at ~1 trillion), but more than enough for function calling when guided by constrained decoding.</p>
+<h3 id="why-a-small-model">Why a small model?<a class="headerlink" href="#why-a-small-model" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Runs locally on standard hardware (no GPU required, though it helps)</li>
+<li>No API calls, no costs, no internet dependency</li>
+<li>The project is specifically designed to show that <strong>structural guidance matters more than raw model size</strong></li>
+<li>With constrained decoding, a 0.6B model can achieve reliability comparable to models 100x larger</li>
+</ul>
+<h3 id="what-the-model-can-and-cannot-do">What the model can and cannot do<a class="headerlink" href="#what-the-model-can-and-cannot-do" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>✅ Can do</th>
+<th>❌ Cannot do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Understand natural language intent</td>
+<td>Reliably produce structured JSON without guidance</td>
+</tr>
+<tr>
+<td>Choose the right function from context</td>
+<td>Remember things between separate calls</td>
+</tr>
+<tr>
+<td>Extract argument values from text</td>
+<td>Know things after its training cutoff</td>
+</tr>
+<tr>
+<td>Follow semantic patterns</td>
+<td>Guarantee valid output format on its own</td>
+</tr>
+</tbody>
+</table>
+<p>The model is strong at <strong>understanding</strong>. Constrained decoding handles the <strong>formatting</strong>.</p>
+<hr />
+<h2 id="the-llm_sdk-package">The llm_sdk Package 📦<a class="headerlink" href="#the-llm_sdk-package" title="Permanent link">&para;</a></h2>
+<p>The project provides a <code>llm_sdk</code> package with a <code>Small_LLM_Model</code> class. This is your interface to the Qwen model. You copy it into your project directory and use it directly.</p>
+<h3 id="available-methods">Available methods<a class="headerlink" href="#available-methods" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">llm_sdk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Small_LLM_Model</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Small_LLM_Model</span><span class="p">()</span>
+</code></pre></div>
+<p><strong><code>get_logits_from_input_ids(input_ids: List[int]) -&gt; List[float]</code></strong></p>
+<p>The core method. Pass a list of token IDs (your prompt + tokens generated so far), get back logits for every token in the vocabulary.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Encode your prompt to token IDs first</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">892</span><span class="p">,</span> <span class="mi">318</span><span class="p">,</span> <span class="mi">262</span><span class="p">,</span> <span class="mi">4771</span><span class="p">,</span> <span class="mi">286</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>  <span class="c1"># "What is the sum of 2 and 3?"</span>
+
+<span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_logits_from_input_ids</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
+<span class="c1"># logits[i] = score for vocabulary token i</span>
+<span class="c1"># len(logits) == vocabulary size (~150,000)</span>
+</code></pre></div>
+<p><strong><code>get_path_to_vocab_file() -&gt; str</code></strong></p>
+<p>Returns the path to a JSON file mapping token IDs to their string representations. You need this to know which token ID corresponds to <code>{</code>, <code>"</code>, <code>1</code>, <code>2</code>, etc.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="n">vocab_path</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_path_to_vocab_file</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">vocab_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">vocab</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># vocab might look like:</span>
+<span class="c1"># {"0": "!", "1": '"', "2": "#", ..., "5476": "{", ...}</span>
+<span class="c1"># Use this to find which IDs are valid at each JSON position</span>
+</code></pre></div>
+<p><strong><code>encode(text: str) -&gt; Tensor</code></strong></p>
+<p>Converts a text string into token IDs. Use this to tokenise your prompt before passing it to <code>get_logits_from_input_ids</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">token_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"What is the sum of 2 and 3?"</span><span class="p">)</span>
+<span class="c1"># Returns a tensor of integer IDs</span>
+</code></pre></div>
+<p><strong><code>decode(token_ids: List[int]) -&gt; str</code></strong> <em>(optional)</em></p>
+<p>Converts token IDs back to text. Useful for debugging or the bonus part.</p>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">decode</span><span class="p">([</span><span class="mi">892</span><span class="p">,</span> <span class="mi">318</span><span class="p">,</span> <span class="mi">262</span><span class="p">])</span>
+<span class="c1"># → "What is the"</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Important:</strong> The subject forbids using any private methods or attributes from <code>llm_sdk</code> (those starting with <code>_</code>). Only use the public methods listed above.</p>
+</blockquote>
+<hr />
+<h2 id="the-full-pipeline-in-this-project">The Full Pipeline in This Project 🔄<a class="headerlink" href="#the-full-pipeline-in-this-project" title="Permanent link">&para;</a></h2>
+<p>Here's how all the pieces connect for a single prompt:</p>
+<div class="highlight"><pre><span></span><code>1. READ INPUT
+   Load functions_definition.json → know available functions &amp; their schemas
+   Load function_calling_tests.json → list of natural language prompts
+
+2. FOR EACH PROMPT (e.g. "What is the sum of 2 and 3?"):
+
+   a. CONSTRUCT PROMPT
+      Build a text prompt that includes the function definitions
+      and the user's natural language request
+
+   b. TOKENISE
+      token_ids = model.encode(prompt)
+
+   c. CONSTRAINED GENERATION LOOP
+      partial_json = ""
+
+      while not complete:
+          logits = model.get_logits_from_input_ids(token_ids)
+
+          valid_token_ids = get_valid_tokens(partial_json, schema)
+          # ↑ your constrained decoding logic:
+          # which tokens can legally follow what we've generated so far?
+
+          for i, token in enumerate(vocabulary):
+              if i not in valid_token_ids:
+                  logits[i] = -inf
+
+          next_token_id = argmax(logits)   # pick highest remaining score
+          token_ids.append(next_token_id)
+          partial_json += vocabulary[next_token_id]
+
+   d. PARSE OUTPUT
+      result = json.loads(partial_json)
+      # always valid because constrained decoding guaranteed it
+
+3. WRITE OUTPUT
+   Write all results to data/output/function_calling_results.json
+</code></pre></div>
+<h3 id="example-end-to-end">Example end-to-end<a class="headerlink" href="#example-end-to-end" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Input prompt:  "What is the sum of 2 and 3?"
+Available functions: [fn_add_numbers(a: number, b: number), fn_greet(name: string), ...]
+
+Constrained generation produces:
+{"name": "fn_add_numbers", "parameters": {"a": 2.0, "b": 3.0}}
+
+Final output entry:
+{
+  "prompt": "What is the sum of 2 and 3?",
+  "name": "fn_add_numbers",
+  "parameters": {"a": 2.0, "b": 3.0}
+}
+</code></pre></div>
+<hr />
+<h2 id="glossary">Glossary 📖<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM</strong></td>
+<td>Large Language Model — AI trained on text to predict/generate language</td>
+</tr>
+<tr>
+<td><strong>Token</strong></td>
+<td>A chunk of text (~3–4 chars) that the model processes as a single unit</td>
+</tr>
+<tr>
+<td><strong>Tokenizer</strong></td>
+<td>The component that splits text into tokens and assigns them integer IDs</td>
+</tr>
+<tr>
+<td><strong>Vocabulary</strong></td>
+<td>The complete list of all tokens the model knows (~150,000 for Qwen3)</td>
+</tr>
+<tr>
+<td><strong>Logits</strong></td>
+<td>Raw scores the model outputs for every token in the vocabulary at each step</td>
+</tr>
+<tr>
+<td><strong>Softmax</strong></td>
+<td>Mathematical function that converts logits into probabilities (sum to 1)</td>
+</tr>
+<tr>
+<td><strong>Greedy decoding</strong></td>
+<td>Always picking the token with the highest logit (deterministic)</td>
+</tr>
+<tr>
+<td><strong>Constrained decoding</strong></td>
+<td>Forcing invalid tokens to -inf before selection, guaranteeing valid structure</td>
+</tr>
+<tr>
+<td><strong>Function calling</strong></td>
+<td>Using an LLM to output structured function call JSON instead of prose</td>
+</tr>
+<tr>
+<td><strong>Schema</strong></td>
+<td>The definition of a function's name, parameter names, and parameter types</td>
+</tr>
+<tr>
+<td><strong>BPE</strong></td>
+<td>Byte Pair Encoding — the algorithm most modern tokenizers use</td>
+</tr>
+<tr>
+<td><strong>Parameters (model)</strong></td>
+<td>The billions of learned weights that make up the neural network</td>
+</tr>
+<tr>
+<td><strong>Parameters (function)</strong></td>
+<td>The arguments a function takes (different meaning — context matters!)</td>
+</tr>
+<tr>
+<td><strong>Hallucination</strong></td>
+<td>When a model confidently generates plausible but incorrect content</td>
+</tr>
+<tr>
+<td><strong>Inference</strong></td>
+<td>Running the model to generate output (vs. training, which sets the weights)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Official Qwen model page: <a href="https://huggingface.co/Qwen/Qwen3-0.6B">huggingface.co/Qwen/Qwen3-0.6B</a></em>
+<em>Constrained decoding deep dive: <a href="https://arxiv.org/abs/2307.09702">arxiv.org/abs/2307.09702</a></em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

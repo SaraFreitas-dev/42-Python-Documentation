@@ -1,0 +1,4660 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Born2BeRoot/virtualization/">
+      
+      
+        <link rel="next" href="../Function_Calling/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>🔒 Constrained Decoding — Guaranteeing Valid JSON Output - 42 School Python Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#constrained-decoding-guaranteeing-valid-json-output" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="42 School Python Documentation" class="md-header__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            42 School Python Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔒 Constrained Decoding — Guaranteeing Valid JSON Output
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="42 School Python Documentation" class="md-nav__button md-logo" aria-label="42 School Python Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    42 School Python Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 42 School Python Documentation &amp; Project Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    42 Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    42 Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A maze ing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    A maze ing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/export-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Export System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A-Maze-ing Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/maze-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maze Generator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/mlx-lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parsing System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../A-maze-ing/render/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Render System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Born2BeRoot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Born2BeRoot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/evaluation_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Evaluation Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐧 Born2beroot Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/linux_fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐧 Linux Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔐 Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/services_and_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Services and Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/storage_and_lvm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💾 Storage and LVM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/users_and_permissions_extended/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    👤 Users and Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Born2BeRoot/virtualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ Virtualization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Call me maybe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Call me maybe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔒 Constrained Decoding — Guaranteeing Valid JSON Output
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔒 Constrained Decoding — Guaranteeing Valid JSON Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-constrained-decoding-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Constrained Decoding Exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-generation-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Generation Loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-vocabulary-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Vocabulary File
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Vocabulary File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-to-look-for-in-the-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to look for in the vocabulary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-leading-space-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The leading-space problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-json-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking JSON State
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tracking JSON State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-json-structure-youre-generating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The JSON structure you're generating
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        States
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsing-current-state-from-partial-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parsing current state from partial output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valid-tokens-at-each-json-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valid Tokens at Each JSON Position
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Valid Tokens at Each JSON Position">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1: Start → {
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-after-the-key-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2: After { → the key "name"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-3-inside-function-name-value-restricted-to-valid-function-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3: Inside function name value → restricted to valid function names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-4-argument-value-depends-on-schema-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4: Argument value → depends on schema type
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enforcing-schema-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enforcing Schema Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enforcing Schema Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type: "number"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type: "string"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type: "boolean"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-inf-trick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The -inf Trick
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Putting It All Together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Mistakes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-vocabstrnext_id-or-vocabnext_id-to-get-the-token-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Using vocab[str(next_id)] or vocab[next_id] to get the token string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgetting-tolist-on-encode-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Forgetting .tolist() on encode output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching-the-whole-vocabulary-in-the-hot-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Searching the whole vocabulary in the hot loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assuming-tokens-are-single-characters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Assuming tokens are single characters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-handling-the-closing-of-the-root-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Not handling the closing } of the root object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardcoding-function-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Hardcoding function names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Function_Calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📞 Function Calling — From Natural Language to Structured JSON
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 LLMs &amp; Function Calling — How Call Me Maybe Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_SDK_Hugging_face/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤗 LLM SDK &amp; Hugging Face — What's Running Under the Hood
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pydantic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ Pydantic — Data Validation for Call Me Maybe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 Schemas — The Blueprint That Connects Everything
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokenization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Tokenization — How Text Becomes Numbers (and Back)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UV_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚡ UV — Modern Python Package &amp; Environment Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UV_Makefile_Example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 UV &amp; Python Makefile Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../argparse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🖥️ CLI &amp; Argument Parsing — How the Program Accepts Input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codexion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Codexion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Study Docs — Codexion (42 Porto)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/01-dining-philosophers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍽️ Dining Philosophers &amp; Deadlock Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/02-pthreads-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧵 POSIX Threads: Creation, Joining &amp; Synchronization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/03-scheduling-fifo-edf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⏱️ Scheduling Policies: FIFO vs EDF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/04-heap-priority-queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🌳 Binary Heap as a Priority Queue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/05-timing-precision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⏲️ Timing Precision &amp; the 10ms Burnout Window
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/06-concurrency-debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 Debugging Concurrency: Valgrind, Helgrind, ThreadSanitizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Codexion/07-Make-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 Make tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fly in
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fly in
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/Drone_Rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛩️ Fly-in — Drone System Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/Intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/Parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📄 Parsing — Input File Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ Fly-in Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/pillow_docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 Pillow Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fly-in/simulator_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulator System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms and data structures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithms and data structures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/bfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Breadth-First Search (BFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/dfs_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Depth-First Search (DFS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/dijkstra_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dijkstra Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithms_and_data_structures/queue_vs_heapq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queue vs Heap Queue (heapq)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Git/git_workflow_for_42/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Workflow for 42 School
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Libraries
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Libraries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX 42lib
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MLX 42lib
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Libraries/MLX_42lib/MLX_DOCUMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MinilibX (MLX) — Complete Python Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pillow
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pillow
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Libraries/Pillow/pillow_docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 Pillow Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MLX 42lib
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MLX 42lib
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MLX_42lib/MLX_DOCUMENTATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MinilibX (MLX) — Complete Python Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Makefile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Makefile/Makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Makefile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Makefile/python_makefile_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚙️ Python Makefile Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python core
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python core
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data validation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data validation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Data_validation/json_and_data_validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON and Data Validation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Data_validation/pydantic_concepts_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic v2 - Core Concepts Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dunder methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dunder methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Dunder_methods/dunder_methods_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✨ Python Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Dunder_methods/python_introspection_and_dunder_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Introspection &amp; Useful Dunder Methods Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment and packages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Environment and packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Environment_and_packages/packages_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📦 Python Packages Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Environment_and_packages/virtual_environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Virtual Environments Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error handling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Error handling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Error_handling/exceptions_try_except/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚨 Python Exceptions &amp; Try/Except Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Error_handling/traceback_debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔍 Python Traceback &amp; Debugging Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional programming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Functional programming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/callable_and_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Callable and Functions in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/closures_and_nonlocal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Closures and nonlocal in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/decorators_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decorators Guide in Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/Functional_programming/lambda_functions_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Python Lambda Functions Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OOP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    OOP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/OOP/class_methods_and_attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 Python Class Methods &amp; Attributes Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python_core/OOP/oop_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object-Oriented Programming (OOP) Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flake8 and mypy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flake8 and mypy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flake8_and_mypy/mypy_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mypy and flake8 Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flake8_and_mypy/typing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Typing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-constrained-decoding-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Constrained Decoding Exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-generation-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Generation Loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-vocabulary-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Vocabulary File
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Vocabulary File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-to-look-for-in-the-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to look for in the vocabulary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-leading-space-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The leading-space problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-json-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking JSON State
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tracking JSON State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-json-structure-youre-generating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The JSON structure you're generating
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        States
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsing-current-state-from-partial-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parsing current state from partial output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valid-tokens-at-each-json-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valid Tokens at Each JSON Position
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Valid Tokens at Each JSON Position">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 1: Start → {
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-after-the-key-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 2: After { → the key "name"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-3-inside-function-name-value-restricted-to-valid-function-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 3: Inside function name value → restricted to valid function names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-4-argument-value-depends-on-schema-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage 4: Argument value → depends on schema type
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enforcing-schema-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enforcing Schema Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enforcing Schema Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type: "number"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type: "string"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type: "boolean"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-inf-trick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The -inf Trick
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Putting It All Together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Mistakes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Mistakes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-vocabstrnext_id-or-vocabnext_id-to-get-the-token-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Using vocab[str(next_id)] or vocab[next_id] to get the token string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgetting-tolist-on-encode-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Forgetting .tolist() on encode output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching-the-whole-vocabulary-in-the-hot-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Searching the whole vocabulary in the hot loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assuming-tokens-are-single-characters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Assuming tokens are single characters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-handling-the-closing-of-the-root-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Not handling the closing } of the root object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardcoding-function-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Hardcoding function names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="constrained-decoding-guaranteeing-valid-json-output">🔒 Constrained Decoding — Guaranteeing Valid JSON Output<a class="headerlink" href="#constrained-decoding-guaranteeing-valid-json-output" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>What this doc covers:</strong> The token-by-token generation loop, how to track JSON state at each step, how to use the vocabulary file to identify valid tokens, and how to enforce schema types (number, string, boolean). This is the core algorithm of the project.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#why-constrained-decoding-exists">Why Constrained Decoding Exists</a></li>
+<li><a href="#the-generation-loop">The Generation Loop</a></li>
+<li><a href="#the-vocabulary-file">The Vocabulary File</a></li>
+<li><a href="#tracking-json-state">Tracking JSON State</a></li>
+<li><a href="#valid-tokens-at-each-json-position">Valid Tokens at Each JSON Position</a></li>
+<li><a href="#enforcing-schema-types">Enforcing Schema Types</a></li>
+<li><a href="#the--inf-trick">The -inf Trick</a></li>
+<li><a href="#complete-walkthrough">Complete Walkthrough</a></li>
+<li><a href="#putting-it-all-together">Putting It All Together</a></li>
+<li><a href="#common-mistakes">Common Mistakes</a></li>
+</ol>
+<hr />
+<h2 id="why-constrained-decoding-exists">Why Constrained Decoding Exists<a class="headerlink" href="#why-constrained-decoding-exists" title="Permanent link">&para;</a></h2>
+<p>At each generation step, the model outputs a probability score (logit) for every token in its vocabulary — roughly 151,643 tokens for Qwen3. Normally, you just pick the highest one.</p>
+<p>The problem: <strong>nothing stops the model from picking a token that breaks your JSON.</strong></p>
+<div class="highlight"><pre><span></span><code>Partial output so far:  '{"name": "'
+Model's top candidates:
+  "fn_add_numbers"   logit: 3.2   ✅ valid function name
+  "fn_greet"         logit: 2.9   ✅ valid function name
+  "The"              logit: 1.4   ❌ breaks JSON — not a function name
+  "42"               logit: 0.8   ❌ breaks schema — name must be a string
+  " "                logit: 0.3   ❌ breaks JSON — unexpected whitespace here
+</code></pre></div>
+<p>Without intervention, the model might pick <code>"The"</code> and produce broken output. With constrained decoding, you set all invalid token logits to <code>-inf</code> before selection, so the model can only ever pick a valid token.</p>
+<div class="highlight"><pre><span></span><code>After constraint:
+  "fn_add_numbers"   logit: 3.2   ✅ stays
+  "fn_greet"         logit: 2.9   ✅ stays
+  "The"              logit: -inf  ❌ eliminated
+  "42"               logit: -inf  ❌ eliminated
+  " "                logit: -inf  ❌ eliminated
+
+Selected token: "fn_add_numbers"  ← correct, guaranteed
+</code></pre></div>
+<p><strong>Result:</strong> 100% valid, schema-compliant JSON every time — regardless of model size.</p>
+<hr />
+<h2 id="the-generation-loop">The Generation Loop<a class="headerlink" href="#the-generation-loop" title="Permanent link">&para;</a></h2>
+<p>This is the fundamental loop you implement. Everything else in the project plugs into it.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_constrained</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">fn_def</span><span class="p">:</span> <span class="n">FunctionDefinition</span><span class="p">,</span>
+    <span class="n">all_fn_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">str_to_id</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>   <span class="c1"># token_string → token_id  (real vocab format)</span>
+    <span class="n">id_to_str</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>   <span class="c1"># token_id → token_string  (reverse lookup)</span>
+    <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Generate a constrained function call JSON for a given prompt."""</span>
+
+    <span class="c1"># Step 1: tokenise the prompt — encode() returns a 2D tensor, use [0].tolist()</span>
+    <span class="n">input_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">prompt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="n">generated_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">partial_json</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_tokens</span><span class="p">):</span>
+        <span class="c1"># Step 2: get logits for all vocabulary tokens</span>
+        <span class="n">all_ids</span> <span class="o">=</span> <span class="n">input_ids</span> <span class="o">+</span> <span class="n">generated_ids</span>
+        <span class="n">logits</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">get_logits_from_input_ids</span><span class="p">(</span><span class="n">all_ids</span><span class="p">))</span>
+
+        <span class="c1"># Step 3: determine valid tokens at this position</span>
+        <span class="n">valid_ids</span> <span class="o">=</span> <span class="n">get_valid_token_ids</span><span class="p">(</span><span class="n">partial_json</span><span class="p">,</span> <span class="n">fn_def</span><span class="p">,</span> <span class="n">all_fn_names</span><span class="p">,</span> <span class="n">str_to_id</span><span class="p">)</span>
+
+        <span class="c1"># Step 4: mask all invalid tokens</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">logits</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_ids</span><span class="p">:</span>
+                <span class="n">logits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+
+        <span class="c1"># Step 5: pick the highest-scoring valid token</span>
+        <span class="n">next_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">logits</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">logits</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+        <span class="c1"># Step 6: append and update state</span>
+        <span class="n">generated_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_id</span><span class="p">)</span>
+        <span class="n">token_str</span> <span class="o">=</span> <span class="n">id_to_str</span><span class="p">[</span><span class="n">next_id</span><span class="p">]</span>   <span class="c1"># use the reverse lookup: id → string</span>
+        <span class="n">partial_json</span> <span class="o">+=</span> <span class="n">token_str</span>
+
+        <span class="c1"># Step 7: check if generation is complete</span>
+        <span class="k">if</span> <span class="n">is_complete</span><span class="p">(</span><span class="n">partial_json</span><span class="p">,</span> <span class="n">fn_def</span><span class="p">):</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">partial_json</span><span class="p">)</span>
+</code></pre></div>
+<p>The key function is <code>get_valid_token_ids</code> — it answers the question: <em>given what we've generated so far, which tokens are legal next?</em></p>
+<hr />
+<h2 id="the-vocabulary-file">The Vocabulary File<a class="headerlink" href="#the-vocabulary-file" title="Permanent link">&para;</a></h2>
+<p><code>model.get_path_to_vocab_file()</code> returns the path to a JSON file. The <strong>real format</strong> maps <strong>token strings to integer IDs</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="n">vocab_path</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_path_to_vocab_file</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">vocab_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">str_to_id</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Real structure:</span>
+<span class="c1"># {"!": 0, '"': 1, "#": 2, ..., "{": 5476, "}": 9313, ...}</span>
+<span class="c1"># key   = token string</span>
+<span class="c1"># value = integer ID</span>
+
+<span class="c1"># Build the reverse lookup for use after token selection</span>
+<span class="n">id_to_str</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ The key is the token string, the value is the ID</strong> — not the other way around. Always build the reverse <code>id_to_str</code> lookup so you can go in both directions.</p>
+</blockquote>
+<h3 id="what-to-look-for-in-the-vocabulary">What to look for in the vocabulary<a class="headerlink" href="#what-to-look-for-in-the-vocabulary" title="Permanent link">&para;</a></h3>
+<p>You need to find the token IDs for specific characters and strings. Build these lookup sets once at startup, not inside the generation loop:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_vocab_lookups</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Pre-compute useful token sets from the vocabulary."""</span>
+
+    <span class="c1"># Normalize helper — handles Ġ (leading space) and other markers</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">norm</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ċ"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># Single structural characters — find all variants (with/without leading space)</span>
+    <span class="n">open_brace</span>   <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"{"</span><span class="p">}</span>
+    <span class="n">close_brace</span>  <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"}"</span><span class="p">}</span>
+    <span class="n">open_quote</span>   <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="s1">'"'</span><span class="p">}</span>
+    <span class="n">colon</span>        <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">":"</span><span class="p">}</span>
+    <span class="n">comma</span>        <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">","</span><span class="p">}</span>
+
+    <span class="c1"># Numeric tokens — digits, decimal point, minus, scientific notation</span>
+    <span class="n">numeric</span>      <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span> <span class="ow">in</span> <span class="s2">"0123456789.-+eE"</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">))}</span>
+
+    <span class="c1"># Whitespace tokens</span>
+    <span class="n">whitespace</span>   <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">""</span> <span class="ow">and</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">""</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"{"</span><span class="p">:</span> <span class="n">open_brace</span><span class="p">,</span>
+        <span class="s2">"}"</span><span class="p">:</span> <span class="n">close_brace</span><span class="p">,</span>
+        <span class="s1">'"'</span><span class="p">:</span> <span class="n">open_quote</span><span class="p">,</span>
+        <span class="s2">":"</span><span class="p">:</span> <span class="n">colon</span><span class="p">,</span>
+        <span class="s2">","</span><span class="p">:</span> <span class="n">comma</span><span class="p">,</span>
+        <span class="s2">"numeric"</span><span class="p">:</span> <span class="n">numeric</span><span class="p">,</span>
+        <span class="s2">"whitespace"</span><span class="p">:</span> <span class="n">whitespace</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre></div>
+<h3 id="the-leading-space-problem">The leading-space problem<a class="headerlink" href="#the-leading-space-problem" title="Permanent link">&para;</a></h3>
+<p>Tokenizers attach spaces to the <strong>beginning</strong> of the following token, not the end of the previous one. A space before <code>"</code> is part of the <code>"</code> token, not a separate space token.</p>
+<div class="highlight"><pre><span></span><code>Text:    '{"name": "fn_greet"}'
+Tokens:  ['{', '"', 'name', '"', ':', 'Ġ"', 'fn', '_greet', '"', '}']
+                                         ↑
+                              space is part of this token: 'Ġ"'
+</code></pre></div>
+<p>This matters when you search the vocabulary for <code>:</code>. There may be tokens for <code>:</code> and <code>Ġ:</code> (with leading space). You need to account for all variants:</p>
+<div class="highlight"><pre><span></span><code><span class="n">colon_variants</span> <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">":"</span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="tracking-json-state">Tracking JSON State<a class="headerlink" href="#tracking-json-state" title="Permanent link">&para;</a></h2>
+<p>To know which tokens are valid at each position, you need to know <strong>where you are in the JSON structure</strong>. The simplest approach is a state machine.</p>
+<h3 id="the-json-structure-youre-generating">The JSON structure you're generating<a class="headerlink" href="#the-json-structure-youre-generating" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>{
+  "name": "&lt;function_name&gt;",
+  "parameters": {
+    "&lt;param1&gt;": &lt;value1&gt;,
+    "&lt;param2&gt;": &lt;value2&gt;
+  }
+}
+</code></pre></div>
+<h3 id="states">States<a class="headerlink" href="#states" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">auto</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">JSONState</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">START</span>               <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># haven't written anything yet → expect '{'</span>
+    <span class="n">AFTER_OPEN_BRACE</span>    <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># wrote '{' → expect '"name"'</span>
+    <span class="n">IN_NAME_KEY</span>         <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># writing the literal key "name"</span>
+    <span class="n">AFTER_NAME_KEY</span>      <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># wrote '"name"' → expect ':'</span>
+    <span class="n">IN_NAME_VALUE</span>       <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># writing the function name string</span>
+    <span class="n">AFTER_NAME_VALUE</span>    <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># wrote function name → expect ','</span>
+    <span class="n">IN_PARAMS_KEY</span>       <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># writing '"parameters"'</span>
+    <span class="n">AFTER_PARAMS_KEY</span>    <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># wrote '"parameters"' → expect ':'</span>
+    <span class="n">IN_PARAMS_OPEN</span>      <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># wrote ':' → expect '{'</span>
+    <span class="n">IN_ARG_KEY</span>          <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># writing an argument name key</span>
+    <span class="n">AFTER_ARG_KEY</span>       <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># wrote key → expect ':'</span>
+    <span class="n">IN_ARG_VALUE_NUM</span>    <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># writing a numeric argument value</span>
+    <span class="n">IN_ARG_VALUE_STR</span>    <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># writing a string argument value</span>
+    <span class="n">IN_ARG_VALUE_BOOL</span>   <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># writing a boolean argument value</span>
+    <span class="n">AFTER_ARG_VALUE</span>     <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># wrote value → expect ',' or '}'</span>
+    <span class="n">COMPLETE</span>            <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   <span class="c1"># wrote final '}' → done</span>
+</code></pre></div>
+<h3 id="parsing-current-state-from-partial-output">Parsing current state from partial output<a class="headerlink" href="#parsing-current-state-from-partial-output" title="Permanent link">&para;</a></h3>
+<p>Rather than tracking state with a variable, you can <strong>infer it from what's been generated so far</strong>. This is more robust and easier to debug:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_current_state</span><span class="p">(</span><span class="n">partial</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fn_def</span><span class="p">:</span> <span class="n">FunctionDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSONState</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Determine current JSON generation state from partial output."""</span>
+    <span class="n">partial</span> <span class="o">=</span> <span class="n">partial</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">partial</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">START</span>
+
+    <span class="k">if</span> <span class="n">partial</span> <span class="o">==</span> <span class="s2">"{"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">AFTER_OPEN_BRACE</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">partial</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'{"name"'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_NAME_KEY</span>
+
+    <span class="k">if</span> <span class="s1">','</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">partial</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">partial</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_NAME_VALUE</span>
+        <span class="k">return</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">AFTER_NAME_VALUE</span>
+
+    <span class="k">if</span> <span class="s1">'"parameters"'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">partial</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_PARAMS_KEY</span>
+
+    <span class="c1"># We're inside the parameters object — expand this logic for your implementation</span>
+    <span class="k">return</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_ARG_KEY</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Tip:</strong> For reliability, track state as a variable that you update token by token, rather than re-parsing the full partial string each time. The walkthrough section below shows this approach.</p>
+</blockquote>
+<hr />
+<h2 id="valid-tokens-at-each-json-position">Valid Tokens at Each JSON Position<a class="headerlink" href="#valid-tokens-at-each-json-position" title="Permanent link">&para;</a></h2>
+<p>Here's what tokens are valid at each stage of generating the output JSON:</p>
+<h3 id="stage-1-start">Stage 1: Start → <code>{</code><a class="headerlink" href="#stage-1-start" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Only the open brace is valid</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"{"</span><span class="p">}</span>
+</code></pre></div>
+<h3 id="stage-2-after-the-key-name">Stage 2: After <code>{</code> → the key <code>"name"</code><a class="headerlink" href="#stage-2-after-the-key-name" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Next tokens must spell out exactly '"name"'</span>
+<span class="n">already_written</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">partial</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># chars after '{'</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s1">'"name"'</span>
+<span class="n">remaining</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="n">already_written</span><span class="p">:]</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">remaining</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">))}</span>
+</code></pre></div>
+<h3 id="stage-3-inside-function-name-value-restricted-to-valid-function-names">Stage 3: Inside function name value → restricted to valid function names<a class="headerlink" href="#stage-3-inside-function-name-value-restricted-to-valid-function-names" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># partial ends with '{"name": "'</span>
+<span class="c1"># next tokens must continue one of the valid function names</span>
+<span class="n">written_so_far</span> <span class="o">=</span> <span class="n">extract_name_value</span><span class="p">(</span><span class="n">partial</span><span class="p">)</span>  <span class="c1"># e.g. "" or "fn_" or "fn_greet"</span>
+
+<span class="n">valid</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">all_function_names</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">fn_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">written_so_far</span><span class="p">):</span>
+        <span class="n">remaining</span> <span class="o">=</span> <span class="n">fn_name</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">written_so_far</span><span class="p">):]</span>
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">norm</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">remaining</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span> <span class="ow">and</span> <span class="n">norm</span><span class="p">:</span>
+                <span class="n">valid</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="stage-4-argument-value-depends-on-schema-type">Stage 4: Argument value → depends on schema type<a class="headerlink" href="#stage-4-argument-value-depends-on-schema-type" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">param_type</span> <span class="o">=</span> <span class="n">current_fn</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">current_param</span><span class="p">]</span><span class="o">.</span><span class="n">type</span>
+
+<span class="k">if</span> <span class="n">param_type</span> <span class="o">==</span> <span class="s2">"number"</span><span class="p">:</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="n">get_numeric_tokens</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">,</span> <span class="n">partial_value</span><span class="p">)</span>
+
+<span class="k">elif</span> <span class="n">param_type</span> <span class="o">==</span> <span class="s2">"string"</span><span class="p">:</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="n">get_string_tokens</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">,</span> <span class="n">in_string</span><span class="p">,</span> <span class="n">partial_value</span><span class="p">)</span>
+
+<span class="k">elif</span> <span class="n">param_type</span> <span class="o">==</span> <span class="s2">"boolean"</span><span class="p">:</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="n">get_boolean_tokens</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">,</span> <span class="n">partial_value</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="enforcing-schema-types">Enforcing Schema Types<a class="headerlink" href="#enforcing-schema-types" title="Permanent link">&para;</a></h2>
+<p>This is where you use <code>fn_def.parameters[param_name].type</code> to decide which tokens are valid inside the argument value.</p>
+<h3 id="type-number"><code>type: "number"</code><a class="headerlink" href="#type-number" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_valid_number_tokens</span><span class="p">(</span>
+    <span class="n">str_to_id</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="n">partial_value</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Returns token IDs that can legally continue a JSON number value."""</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">candidate</span> <span class="o">=</span> <span class="n">partial_value</span> <span class="o">+</span> <span class="n">norm</span>
+        <span class="k">if</span> <span class="n">is_valid_number_prefix</span><span class="p">(</span><span class="n">candidate</span><span class="p">):</span>
+            <span class="n">valid</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">valid</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">is_valid_number_prefix</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return True if s is a valid prefix of a JSON number."""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'^-?(?:\d+(?:\.\d*)?(?:[eE][+-]?\d*)?)?$'</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="type-string"><code>type: "string"</code><a class="headerlink" href="#type-string" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_valid_string_tokens</span><span class="p">(</span>
+    <span class="n">str_to_id</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="n">in_string</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+    <span class="n">string_content</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">in_string</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s1">'"'</span><span class="p">}</span>
+
+    <span class="n">valid</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s1">'"'</span><span class="p">:</span>
+            <span class="n">valid</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>   <span class="c1"># closing quote</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="s1">'"'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span> <span class="ow">and</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="n">valid</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>   <span class="c1"># any token without unescaped quote</span>
+        <span class="k">elif</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">"'</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="n">valid</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>   <span class="c1"># escaped quote is fine</span>
+
+    <span class="k">return</span> <span class="n">valid</span>
+</code></pre></div>
+<h3 id="type-boolean"><code>type: "boolean"</code><a class="headerlink" href="#type-boolean" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_valid_boolean_tokens</span><span class="p">(</span>
+    <span class="n">str_to_id</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="n">partial_value</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Tokens that continue 'true' or 'false' from partial_value."""</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"true"</span><span class="p">,</span> <span class="s2">"false"</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">target</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">partial_value</span><span class="p">):</span>
+            <span class="n">remaining</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">partial_value</span><span class="p">):]</span>
+            <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">norm</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">remaining</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span> <span class="ow">and</span> <span class="n">norm</span><span class="p">:</span>
+                    <span class="n">valid</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tid</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">valid</span>
+</code></pre></div>
+<hr />
+<h2 id="the-inf-trick">The <code>-inf</code> Trick<a class="headerlink" href="#the-inf-trick" title="Permanent link">&para;</a></h2>
+<p>Negative infinity in Python's float system:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="n">NEGATIVE_INF</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+</code></pre></div>
+<p>When you set a logit to <code>-math.inf</code>, the softmax calculation gives it a probability of exactly 0 — it can <strong>never</strong> be selected.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">apply_constraints</span><span class="p">(</span>
+    <span class="n">logits</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+    <span class="n">valid_token_ids</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Mask all tokens not in valid_token_ids to -inf."""</span>
+    <span class="n">constrained</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">constrained</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_token_ids</span><span class="p">:</span>
+            <span class="n">constrained</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+
+    <span class="k">return</span> <span class="n">constrained</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Watch out:</strong> if <code>valid_token_ids</code> is empty, all logits become <code>-inf</code> and <code>argmax</code> will behave unpredictably. Always assert before applying constraints:</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_token_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"No valid tokens found at position '</span><span class="si">{</span><span class="n">partial_json</span><span class="si">}</span><span class="s2">' — "</span>
+    <span class="sa">f</span><span class="s2">"check your state machine logic"</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="complete-walkthrough">Complete Walkthrough<a class="headerlink" href="#complete-walkthrough" title="Permanent link">&para;</a></h2>
+<p>Let's trace through generating the output for <code>"Greet john"</code> step by step.</p>
+<p><strong>Function definition:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fn_greet"</span><span class="p">,</span><span class="w"> </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">}}}</span>
+</code></pre></div></p>
+<p><strong>Expected output:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fn_greet"</span><span class="p">,</span><span class="w"> </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="p">}}</span>
+</code></pre></div></p>
+<hr />
+<div class="highlight"><pre><span></span><code>partial: ""          state: START
+valid:   {tid for '{'}
+model picks: "{"     (id=5476 in Qwen3 vocab)
+→ partial: "{"
+
+partial: "{"         state: AFTER_OPEN_BRACE
+valid:   {tid for '"'}
+model picks: '"'     (id=1)
+→ partial: '{"'
+
+partial: '{"'        state: IN_NAME_KEY
+valid:   tokens continuing '"name"' from position 1
+         → tids for "n", "na", "nam", "name"
+model picks: token for "name"
+→ partial: '{"name'
+
+partial: '{"name'    state: IN_NAME_KEY
+valid:   {tid for '"'}   ← closing the key
+model picks: '"'
+→ partial: '{"name"'
+
+partial: '{"name"'   state: AFTER_NAME_KEY
+valid:   {tids for ":", "Ġ:", ": "}
+model picks: token for ": "
+→ partial: '{"name": '
+
+partial: '{"name": ' state: BEFORE_NAME_VALUE
+valid:   {tid for '"'}
+model picks: '"'
+→ partial: '{"name": "'
+
+partial: '{"name": "' state: IN_NAME_VALUE
+valid: tokens continuing any valid function name from ""
+  "fn_add_numbers" → tids for "fn", "fn_", "fn_a", ...
+  "fn_greet"       → tids for "fn", "fn_", "fn_g", ...
+  "fn_reverse_string" → ...
+
+model sees "Greet john" → assigns highest logit to "fn_greet" prefix
+model picks: token for "fn_greet"  (or "fn" then "_greet")
+→ partial: '{"name": "fn_greet'
+
+partial: '{"name": "fn_greet'   state: IN_NAME_VALUE (complete)
+valid:   {tid for '"'}
+model picks: '"'
+→ partial: '{"name": "fn_greet"'
+
+partial: '{"name": "fn_greet"'   state: AFTER_NAME_VALUE
+valid:   {tid for ','}
+model picks: ","
+→ partial: '{"name": "fn_greet",'
+
+... (similar process for '"parameters"' key, ':', '{') ...
+
+→ partial: '{"name": "fn_greet", "parameters": {"'
+
+state: IN_ARG_KEY
+valid: tokens continuing '"name"'  ← only param for fn_greet is "name"
+model picks: token for "name"
+→ partial: '{"name": "fn_greet", "parameters": {"name'
+
+→ partial: '{"name": "fn_greet", "parameters": {"name"'
+→ partial: '{"name": "fn_greet", "parameters": {"name": '
+→ partial: '{"name": "fn_greet", "parameters": {"name": "'
+
+state: IN_ARG_VALUE_STR (type is "string")
+valid: all printable non-quote tokens + closing '"'
+
+model extracts "john" from "Greet john" → picks token for "john"
+→ partial: '{"name": "fn_greet", "parameters": {"name": "john'
+
+valid: {tid for '"'}   ← must close the string
+model picks: '"'
+→ partial: '{"name": "fn_greet", "parameters": {"name": "john"'
+
+state: AFTER_ARG_VALUE
+no more params → valid: {tid for '}'}
+model picks: "}"
+→ partial: '{"name": "fn_greet", "parameters": {"name": "john"}'
+
+state: AFTER_PARAMS_CLOSE
+valid: {tid for '}'}
+model picks: "}"
+→ partial: '{"name": "fn_greet", "parameters": {"name": "john"}}'
+
+state: COMPLETE → stop generation
+
+json.loads('{"name": "fn_greet", "parameters": {"name": "john"}}')
+→ {"name": "fn_greet", "parameters": {"name": "john"}}  ✅
+</code></pre></div>
+<hr />
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_valid_token_ids</span><span class="p">(</span>
+    <span class="n">partial</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">fn_def</span><span class="p">:</span> <span class="n">FunctionDefinition</span><span class="p">,</span>
+    <span class="n">all_fn_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">str_to_id</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>   <span class="c1"># token_string → token_id</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">JSONState</span><span class="p">,</span>
+    <span class="n">context</span><span class="p">:</span> <span class="nb">dict</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Central dispatch: given the current state and partial output,</span>
+<span class="sd">    return the set of token IDs that are valid next tokens.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Find token IDs whose normalized string equals target."""</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span> <span class="o">==</span> <span class="n">target</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_strip</span><span class="p">(</span><span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Find token IDs whose stripped normalized string equals target."""</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="n">target</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">START</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">find_strip</span><span class="p">(</span><span class="s2">"{"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">AFTER_OPEN_BRACE</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">find</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_NAME_KEY</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">tokens_continuing</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">,</span> <span class="s1">'"name"'</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="s2">"name_key_written"</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">AFTER_NAME_KEY</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">find_strip</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">BEFORE_NAME_VALUE</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">find</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_NAME_VALUE</span><span class="p">:</span>
+        <span class="n">written</span> <span class="o">=</span> <span class="n">context</span><span class="p">[</span><span class="s2">"name_value_written"</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">get_valid_name_tokens</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">,</span> <span class="n">all_fn_names</span><span class="p">,</span> <span class="n">written</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">AFTER_NAME_VALUE</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">find</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span>   <span class="c1"># closing quote of name value</span>
+
+    <span class="c1"># ... continue for all states ...</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_ARG_VALUE_NUM</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_valid_number_tokens</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="s2">"current_value"</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_ARG_VALUE_STR</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_valid_string_tokens</span><span class="p">(</span>
+            <span class="n">str_to_id</span><span class="o">=</span><span class="n">str_to_id</span><span class="p">,</span>
+            <span class="n">in_string</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">string_content</span><span class="o">=</span><span class="n">context</span><span class="p">[</span><span class="s2">"current_value"</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">JSONState</span><span class="o">.</span><span class="n">IN_ARG_VALUE_BOOL</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_valid_boolean_tokens</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="s2">"current_value"</span><span class="p">])</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unhandled state: </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="common-mistakes">Common Mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<h3 id="using-vocabstrnext_id-or-vocabnext_id-to-get-the-token-string">❌ Using <code>vocab[str(next_id)]</code> or <code>vocab[next_id]</code> to get the token string<a class="headerlink" href="#using-vocabstrnext_id-or-vocabnext_id-to-get-the-token-string" title="Permanent link">&para;</a></h3>
+<p>The vocab format is <code>str → int</code>, not <code>int → str</code>. After picking <code>next_id</code>, you need the <strong>reverse lookup</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ❌ Wrong — vocab keys are strings, not IDs</span>
+<span class="n">token_str</span> <span class="o">=</span> <span class="n">vocab</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">next_id</span><span class="p">)]</span>
+<span class="n">token_str</span> <span class="o">=</span> <span class="n">vocab</span><span class="p">[</span><span class="n">next_id</span><span class="p">]</span>
+
+<span class="c1"># ✅ Correct — use the pre-built reverse lookup</span>
+<span class="n">token_str</span> <span class="o">=</span> <span class="n">id_to_str</span><span class="p">[</span><span class="n">next_id</span><span class="p">]</span>
+</code></pre></div>
+<hr />
+<h3 id="forgetting-tolist-on-encode-output">❌ Forgetting <code>.tolist()</code> on encode output<a class="headerlink" href="#forgetting-tolist-on-encode-output" title="Permanent link">&para;</a></h3>
+<p><code>model.encode()</code> returns a <strong>2D tensor</strong>, not a list of ints:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ❌ Wrong — returns a 2D tensor</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="c1"># ✅ Correct — flatten to a list of ints</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">prompt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h3 id="searching-the-whole-vocabulary-in-the-hot-loop">❌ Searching the whole vocabulary in the hot loop<a class="headerlink" href="#searching-the-whole-vocabulary-in-the-hot-loop" title="Permanent link">&para;</a></h3>
+<p>Pre-compute fixed sets at startup. Only do dynamic searches (function name prefixes, param name prefixes) when in those specific states.</p>
+<hr />
+<h3 id="assuming-tokens-are-single-characters">❌ Assuming tokens are single characters<a class="headerlink" href="#assuming-tokens-are-single-characters" title="Permanent link">&para;</a></h3>
+<p>A token like <code>"fn_greet"</code> might be emitted as one token <code>fn_greet</code>, or as <code>fn</code> + <code>_greet</code>. Your prefix-matching logic must handle all cases:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ❌ Wrong: assuming 'fn_greet' is always one token</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s2">"fn_greet"</span><span class="p">}</span>
+
+<span class="c1"># ✅ Correct: allow any token that continues what's needed</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tokens_continuing</span><span class="p">(</span><span class="n">str_to_id</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">written</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="n">remaining</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">written</span><span class="p">):]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">tid</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">str_to_id</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">remaining</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">))</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"Ġ"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)}</span>
+</code></pre></div>
+<hr />
+<h3 id="not-handling-the-closing-of-the-root-object">❌ Not handling the closing <code>}</code> of the root object<a class="headerlink" href="#not-handling-the-closing-of-the-root-object" title="Permanent link">&para;</a></h3>
+<p>After the parameters object closes with <code>}</code>, you still need one more <code>}</code> to close the root object. Make sure your state machine has a state for this.</p>
+<hr />
+<h3 id="hardcoding-function-names">❌ Hardcoding function names<a class="headerlink" href="#hardcoding-function-names" title="Permanent link">&para;</a></h3>
+<p>Your solution must work with any <code>functions_definition.json</code>. Never hardcode <code>"fn_add_numbers"</code> — always read function names dynamically from the loaded schema.</p>
+<hr />
+<p><em>See also: <a href="./TOKENIZATION.md"><code>TOKENIZATION.md</code></a> for how the vocabulary file is structured and how to handle BPE token edge cases.</em>
+<em>See also: <a href="./FUNCTION_CALLING.md"><code>FUNCTION_CALLING.md</code></a> for the full input/output format and schema structure.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
