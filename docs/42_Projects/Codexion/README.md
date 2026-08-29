@@ -23,7 +23,7 @@ Each file below covers one concept needed to understand and defend the project.
 
 | Codexion concept | Study topic |
 |---|---|
-| Dongles = forks, coders = philosophers | `01` |
+| Dongles = forks, coders = philosophers | `01` |  
 | Mutex per dongle, cond var for waiting queue | `02` |
 | `scheduler` argument (`fifo` / `edf`) | `03` |
 | "You must implement a priority queue (heap)" | `04` |
